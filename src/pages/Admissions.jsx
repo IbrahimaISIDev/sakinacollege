@@ -363,10 +363,14 @@ const Admissions = () => {
                         <p className="text-sm text-gray-600">Document PDF à remplir</p>
                       </div>
                     </div>
-                    <button className="bg-sakina-gold text-sakina-blue px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center space-x-2">
+                    <a 
+                      href="/forms/formulaire-inscription-complet.pdf"
+                      download="Formulaire_Inscription_Complet_Sakina.pdf"
+                      className="bg-sakina-gold text-sakina-blue px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center space-x-2"
+                    >
                       <Download className="w-4 h-4" />
                       <span>Télécharger</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -381,10 +385,14 @@ const Admissions = () => {
                         <p className="text-sm text-gray-600">À faire remplir par le médecin</p>
                       </div>
                     </div>
-                    <button className="bg-sakina-gold text-sakina-blue px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center space-x-2">
+                    <a 
+                      href="/forms/fiche-medicale-complete.pdf"
+                      download="Fiche_Medicale_Complete_Sakina.pdf"
+                      className="bg-sakina-gold text-sakina-blue px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center space-x-2"
+                    >
                       <Download className="w-4 h-4" />
                       <span>Télécharger</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

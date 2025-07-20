@@ -7,6 +7,7 @@ import studentsGroupImage from '../assets/images/students-group.jpg';
 const News = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedYear, setSelectedYear] = useState(null);
 
   const categories = [
     { id: 'all', name: 'Toutes les actualités', count: 12 },
@@ -116,6 +117,182 @@ const News = () => {
     };
     return names[category] || category;
   };
+
+  const handleArchiveClick = (year) => {
+    setSelectedYear(year);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getArchiveNews = (year) => {
+    const archiveData = {
+      '2023': [
+        {
+          id: 101,
+          title: "Prix d'excellence académique 2023",
+          excerpt: "Le Collège Sakina reçoit le prix régional d'excellence académique pour ses résultats exceptionnels.",
+          content: "Une reconnaissance méritée pour notre établissement qui confirme notre engagement pour l'excellence éducative.",
+          image: studentsImage,
+          category: 'achievements',
+          author: 'Direction',
+          date: '2023-12-15'
+        },
+        {
+          id: 102,
+          title: "Journées culturelles islamiques 2023",
+          excerpt: "Semaine dédiée à la culture islamique avec expositions, récitations et conférences.",
+          content: "Un événement riche qui a permis aux élèves de découvrir et approfondir leur connaissance de la culture islamique.",
+          image: islamicEducationImage,
+          category: 'events',
+          author: 'Département Culturel',
+          date: '2023-11-20'
+        },
+        {
+          id: 103,
+          title: "Formation continue des enseignants",
+          excerpt: "Session de formation intensive pour l'amélioration des méthodes pédagogiques.",
+          content: "Nos enseignants se perfectionnent pour offrir un enseignement toujours plus adapté aux besoins des élèves.",
+          image: studentsGroupImage,
+          category: 'academic',
+          author: 'Formation Continue',
+          date: '2023-10-10'
+        }
+      ],
+      '2022': [
+        {
+          id: 201,
+          title: "Inauguration de la nouvelle aile",
+          excerpt: "Ouverture d'un nouveau bâtiment avec laboratoires et salles multimédias modernes.",
+          content: "Extension de nos infrastructures pour mieux accueillir nos élèves et améliorer les conditions d'apprentissage.",
+          image: studentsImage,
+          category: 'academic',
+          author: 'Administration',
+          date: '2022-09-15'
+        },
+        {
+          id: 202,
+          title: "Concours de sciences physiques",
+          excerpt: "Nos élèves brillent au concours régional de sciences physiques et chimie.",
+          content: "Première place remportée par notre équipe lors du concours inter-établissements.",
+          image: studentsGroupImage,
+          category: 'achievements',
+          author: 'Département Sciences',
+          date: '2022-05-20'
+        }
+      ],
+      '2021': [
+        {
+          id: 301,
+          title: "Adaptation aux mesures COVID-19",
+          excerpt: "Mise en place de protocoles sanitaires et enseignement hybride.",
+          content: "Notre établissement s'adapte aux contraintes sanitaires tout en maintenant la qualité de l'enseignement.",
+          image: studentsImage,
+          category: 'academic',
+          author: 'Cellule COVID',
+          date: '2021-03-10'
+        }
+      ],
+      '2020': [
+        {
+          id: 401,
+          title: "Continuité pédagogique en ligne",
+          excerpt: "Lancement de la plateforme d'enseignement à distance.",
+          content: "Innovation pédagogique pour assurer la continuité des cours pendant la pandémie.",
+          image: studentsGroupImage,
+          category: 'academic',
+          author: 'Innovation Pédagogique',
+          date: '2020-04-15'
+        }
+      ],
+      '2019': [
+        {
+          id: 501,
+          title: "10 ans du Collège Sakina",
+          excerpt: "Célébration du dixième anniversaire de notre établissement.",
+          content: "Une décennie d'excellence éducative célébrée avec toute la communauté scolaire.",
+          image: islamicEducationImage,
+          category: 'events',
+          author: 'Comité des Fêtes',
+          date: '2019-06-20'
+        }
+      ]
+    };
+    return archiveData[year] || [];
+  };
+
+  if (selectedYear) {
+    const archiveNews = getArchiveNews(selectedYear);
+    
+    return (
+      <div className="min-h-screen">
+        {/* Header avec retour */}
+        <section className="relative bg-gradient-to-br from-sakina-blue to-blue-800 py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center text-white space-y-6">
+              <button
+                onClick={() => setSelectedYear(null)}
+                className="mb-4 bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-colors duration-300"
+              >
+                ← Retour aux archives
+              </button>
+              <h1 className="text-4xl md:text-6xl font-bold">
+                Archives {selectedYear}
+              </h1>
+              <p className="text-xl md:text-2xl text-blue-200 max-w-3xl mx-auto">
+                Revivez les moments forts de l'année {selectedYear}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Articles de l'année */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {archiveNews.map((article) => (
+                <article
+                  key={article.id}
+                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(article.category)}`}>
+                        {getCategoryName(article.category)}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-center text-xs text-gray-500 mb-3">
+                      <Calendar className="w-3 h-3 mr-1" />
+                      <span>{formatDate(article.date)}</span>
+                    </div>
+                    
+                    <h3 className="text-lg font-bold text-sakina-blue mb-3 group-hover:text-sakina-gold transition-colors duration-300">
+                      {article.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      {article.excerpt}
+                    </p>
+                    
+                    <button className="text-sakina-blue font-semibold hover:text-sakina-gold transition-colors duration-300 flex items-center text-sm group">
+                      Lire plus
+                      <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -320,24 +497,57 @@ const News = () => {
       {/* Section Archives */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center">
+          <div className="text-center mb-12">
             <h3 className="text-2xl font-bold text-sakina-blue mb-4">
               Archives des Actualités
             </h3>
             <p className="text-gray-600 mb-8">
               Consultez nos actualités des années précédentes
             </p>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              {['2024', '2023', '2022', '2021'].map((year) => (
-                <button
-                  key={year}
-                  className="px-6 py-3 bg-white border border-gray-300 rounded-xl hover:bg-sakina-blue hover:text-white hover:border-sakina-blue transition-all duration-300 font-medium"
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { year: '2024', count: 12, highlights: ['Excellents résultats BFEM', 'Concours coranique', 'Nouvelle année scolaire'] },
+              { year: '2023', count: 18, highlights: ['Prix excellence académique', 'Journées culturelles', 'Formation enseignants'] },
+              { year: '2022', count: 15, highlights: ['Inauguration nouvelle aile', 'Concours sciences', 'Ramadan solidaire'] },
+              { year: '2021', count: 13, highlights: ['Adaptation COVID', 'Cours en ligne', 'Remise diplômes'] },
+              { year: '2020', count: 10, highlights: ['Continuité pédagogique', 'Solidarité communautaire', 'Innovation numérique'] },
+              { year: '2019', count: 16, highlights: ['10 ans établissement', 'Partenariats internationaux', 'Olympiades'] }
+            ].map((archive) => (
+              <div
+                key={archive.year}
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 group"
+              >
+                <div className="text-center mb-4">
+                  <h4 className="text-3xl font-bold text-sakina-blue mb-2">
+                    {archive.year}
+                  </h4>
+                  <p className="text-gray-600">
+                    {archive.count} actualités publiées
+                  </p>
+                </div>
+                
+                <div className="space-y-2 mb-6">
+                  <p className="text-sm font-semibold text-gray-700 mb-3">
+                    Temps forts de l'année :
+                  </p>
+                  {archive.highlights.map((highlight, index) => (
+                    <div key={index} className="flex items-center text-sm text-gray-600">
+                      <div className="w-2 h-2 bg-sakina-gold rounded-full mr-3"></div>
+                      {highlight}
+                    </div>
+                  ))}
+                </div>
+                
+                <button 
+                  onClick={() => handleArchiveClick(archive.year)}
+                  className="w-full bg-sakina-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 group-hover:shadow-md"
                 >
-                  Année {year}
+                  Consulter {archive.year}
                 </button>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('accueil');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') || 'accueil';
+      setCurrentPage(hash);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Set initial page
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -58,16 +71,25 @@ const Navbar = () => {
 
             {/* Menu desktop */}
             <div className="hidden md:flex items-center space-x-8">
-              {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-sakina-blue font-medium transition-colors duration-300 relative group"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-sakina-gold transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))}
+              {menuItems.map((item) => {
+                const isActive = currentPage === item.href.replace('#', '');
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={`font-medium transition-all duration-300 relative group px-3 py-2 rounded-lg ${
+                      isActive 
+                        ? 'text-sakina-blue bg-sakina-blue/10 border-b-2 border-sakina-gold' 
+                        : 'text-gray-700 hover:text-sakina-blue hover:bg-sakina-blue/5'
+                    }`}
+                  >
+                    {item.name}
+                    <span className={`absolute bottom-0 left-0 h-0.5 bg-sakina-gold transition-all duration-300 ${
+                      isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
+                    }`}></span>
+                  </a>
+                );
+              })}
             </div>
 
             {/* Bouton CTA desktop */}
@@ -97,16 +119,23 @@ const Navbar = () => {
           }`}
         >
           <div className="container mx-auto px-4 py-4">
-            {menuItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-3 text-gray-700 hover:text-sakina-blue font-medium transition-colors duration-300 border-b border-gray-100 last:border-b-0"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+            {menuItems.map((item) => {
+              const isActive = currentPage === item.href.replace('#', '');
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`block py-3 px-4 font-medium transition-all duration-300 border-b border-gray-100 last:border-b-0 rounded-lg mx-2 ${
+                    isActive 
+                      ? 'text-white bg-sakina-blue shadow-md' 
+                      : 'text-gray-700 hover:text-sakina-blue hover:bg-sakina-blue/10'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
             <div className="pt-4">
               <a
                 href="#inscriptions"

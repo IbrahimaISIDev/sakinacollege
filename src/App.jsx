@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
@@ -16,6 +17,8 @@ function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'accueil';
       setCurrentPage(hash);
+      // Scroll to top when page changes
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -48,6 +51,7 @@ function App() {
         {renderPage()}
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }
