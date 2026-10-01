@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
@@ -8,47 +8,42 @@ import Programs from './pages/Programs';
 import Admissions from './pages/Admissions';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import { useHashRoute } from './hooks/useHashRoute';
 import './App.css';
 
+const PAGES = {
+  accueil: Home,
+  apropos: About,
+  programmes: Programs,
+  inscriptions: Admissions,
+  actualites: News,
+  contact: Contact,
+};
+
 function App() {
-  const [currentPage, setCurrentPage] = useState('accueil');
+  const { page, param } = useHashRoute();
+  const Page = PAGES[page];
 
+  // Remonter en haut à chaque changement de page ou de sous-page
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') || 'accueil';
-      setCurrentPage(hash);
-      // Scroll to top when page changes
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Set initial page
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'apropos':
-        return <About />;
-      case 'programmes':
-        return <Programs />;
-      case 'inscriptions':
-        return <Admissions />;
-      case 'actualites':
-        return <News />;
-      case 'contact':
-        return <Contact />;
-      default:
-        return <Home />;
-    }
-  };
+    window.scrollTo({ top: 0 });
+  }, [page, param]);
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">
-        {renderPage()}
+      <a
+        href="#contenu"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('contenu')?.focus();
+        }}
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-sakina-gold focus:text-sakina-blue focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
+      >
+        Aller au contenu
+      </a>
+      <Navbar currentPage={page} />
+      <main id="contenu" tabIndex={-1} className="flex-1 focus:outline-none">
+        <Page param={param} />
       </main>
       <Footer />
       <BackToTop />
