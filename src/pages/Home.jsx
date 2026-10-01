@@ -1,8 +1,8 @@
-import React from 'react';
-import { ArrowRight, BookOpen, Users, Award, Star, CheckCircle, Phone, Mail } from 'lucide-react';
+import { ArrowRight, BookOpen, Users, Award, Star, CheckCircle, Phone } from 'lucide-react';
 import heroImage from '../assets/images/hero-image.jpg';
 import studentsImage from '../assets/images/students-classroom.jpg';
 import islamicEducationImage from '../assets/images/islamic-education.jpg';
+import CtaSection from '../components/CtaSection';
 
 const Home = () => {
   const features = [
@@ -69,7 +69,7 @@ const Home = () => {
               </div>
               
               <div className="space-y-4">
-                <p className="text-lg text-blue-200 leading-relaxed">
+                <p className="text-lg text-blue-100 leading-relaxed">
                   Situé au cœur de Dakar, le Collège Sakina offre une éducation de qualité 
                   alliant programme national sénégalais et valeurs islamiques authentiques.
                 </p>
@@ -97,7 +97,9 @@ const Home = () => {
                 <img
                   src={studentsImage}
                   alt="Étudiants du Collège Sakina"
-                  className="rounded-2xl shadow-2xl"
+                  width="626"
+                  height="417"
+                  className="rounded-2xl shadow-2xl w-full h-auto"
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
                   <div className="flex items-center space-x-4">
@@ -174,7 +176,10 @@ const Home = () => {
               <img
                 src={islamicEducationImage}
                 alt="Éducation islamique au Collège Sakina"
-                className="rounded-2xl shadow-lg"
+                loading="lazy"
+                width="2121"
+                height="1414"
+                className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>
             <div className="space-y-6">
@@ -248,34 +253,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Section CTA */}
-      <section className="py-20 bg-sakina-blue text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Prêt à rejoindre notre communauté ?
-          </h2>
-          <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
-            Offrez à votre enfant une éducation d'excellence dans un environnement 
-            respectueux des valeurs islamiques.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#inscriptions"
-              className="bg-sakina-gold text-sakina-blue px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Commencer l'inscription
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-blue transition-all duration-300 flex items-center justify-center"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Nous contacter
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Prêt à rejoindre notre communauté ?"
+        text="Offrez à votre enfant une éducation d'excellence dans un environnement respectueux des valeurs islamiques."
+        primary={{ label: "Commencer l'inscription", href: '#inscriptions' }}
+        secondary={{ label: 'Nous contacter', href: '#contact', icon: <Phone className="w-5 h-5 mr-2" aria-hidden="true" /> }}
+      />
     </div>
   );
 };
