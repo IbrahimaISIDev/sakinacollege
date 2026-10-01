@@ -1,249 +1,89 @@
-# Collège Privé Musulman Sakina - Site Web
+# Collège Privé Musulman Sakina — Site web
 
-Ce projet est une application web développée pour le Collège Privé Musulman Sakina, une école islamique à Dakar, Sénégal. Le site est construit avec React.js et Tailwind CSS, en suivant une approche mobile-first pour garantir une expérience utilisateur optimale sur tous les appareils.
+Site vitrine du Collège Privé Musulman Sakina (HLM2, Dakar, Sénégal) : présentation de l'établissement, programmes, inscriptions, actualités et contact.
 
-## 🌟 Fonctionnalités
+Application **React 19** monopage, stylée avec **Tailwind CSS v4** et construite avec **Vite 6**. Aucun backend.
 
-### Pages Principales
-- **Accueil** : Section hero, statistiques, témoignages, présentation des services
-- **À propos** : Histoire, mission/vision, valeurs, timeline de développement
-- **Programmes** : Détails par niveau (6ème à 3ème), formation islamique, emploi du temps
-- **Inscriptions** : Processus d'inscription, formulaire, documents requis, frais de scolarité
-- **Actualités** : Articles avec filtres par catégorie, recherche, newsletter
-- **Contact** : Formulaire de contact, informations pratiques, FAQ, localisation
+## Prérequis
 
-### Caractéristiques Techniques
-- **Responsive Design** : Approche mobile-first avec navigation fluide
-- **Menu Burger** : Navigation optimisée pour mobile
-- **Formulaires Interactifs** : Validation et feedback utilisateur
-- **Système de Routing** : Navigation par hash pour SPA
-- **Optimisation SEO** : Balises meta, descriptions optimisées
-- **Performance** : Images optimisées, code minifié
+- Node.js 18 ou plus
+- pnpm (le dépôt fixe la version via `packageManager`)
 
-## 🎨 Charte Graphique
+## Démarrage
 
-- **Couleurs Principales** :
-  - Bleu nuit : `#1e3a8a` (sakina-blue)
-  - Doré : `#facc15` (sakina-gold)
-  - Blanc : `#ffffff`
-- **Police** : Poppins (sans-serif, lisible)
-- **Style** : Minimal, professionnel, respectueux des valeurs islamiques
-
-## 🛠️ Technologies Utilisées
-
-- **React.js** : Frontend avec composants réutilisables
-- **Tailwind CSS** : Styles responsive et modernes
-- **React Router DOM** : Navigation entre les pages (hash routing)
-- **Lucide React** : Icônes légères et modernes
-- **Vite** : Build rapide et performant
-
-## 📋 Prérequis
-
-- Node.js (version 18 ou supérieure)
-- npm ou pnpm
-
-## 🚀 Installation
-
-1. **Clonez le dépôt** :
-   ```bash
-   git clone <votre-repo-git>
-   cd sakinacollege
-   ```
-
-2. **Installez les dépendances** :
-   ```bash
-   pnpm install
-   # ou
-   npm install
-   ```
-
-3. **Lancez le serveur de développement** :
-   ```bash
-   pnpm run dev
-   # ou
-   npm run dev
-   ```
-
-4. **Ouvrez votre navigateur** à l'adresse : `http://localhost:5173`
-
-## 📁 Structure du Projet
-
-```
-/sakinacollege
-├── public/
-│   ├── index.html
-│   └── favicon.ico
-├── src/
-│   ├── assets/
-│   │   └── images/           # Images du site
-│   ├── components/
-│   │   ├── Navbar.jsx        # Navigation principale
-│   │   └── Footer.jsx        # Pied de page
-│   ├── pages/
-│   │   ├── Home.jsx          # Page d'accueil
-│   │   ├── About.jsx         # Page à propos
-│   │   ├── Programs.jsx      # Page programmes
-│   │   ├── Admissions.jsx    # Page inscriptions
-│   │   ├── News.jsx          # Page actualités
-│   │   └── Contact.jsx       # Page contact
-│   ├── App.jsx               # Composant principal
-│   ├── main.jsx              # Point d'entrée
-│   └── App.css               # Styles globaux
-├── tailwind.config.js        # Configuration Tailwind
-├── package.json
-└── README.md
-```
-
-## 🎯 Fonctionnalités Détaillées
-
-### Navigation
-- Menu responsive avec burger sur mobile
-- Navigation par hash (#accueil, #apropos, etc.)
-- Liens actifs avec mise en évidence
-
-### Page d'Accueil
-- Section hero avec call-to-action
-- Statistiques de l'établissement
-- Présentation des services
-- Témoignages de parents et élèves
-- Sections d'engagement
-
-### Page À Propos
-- Histoire de l'établissement
-- Mission et vision
-- Valeurs fondamentales
-- Timeline de développement
-- Objectifs pédagogiques
-
-### Page Programmes
-- Onglets interactifs par niveau de classe
-- Détails des matières enseignées
-- Programme d'éducation islamique
-- Emploi du temps type
-- Activités complémentaires
-
-### Page Inscriptions
-- Processus d'inscription en 4 étapes
-- Formulaire de pré-inscription interactif
-- Liste des documents requis
-- Grille tarifaire détaillée
-- Téléchargement de formulaires
-
-### Page Actualités
-- Articles avec système de filtres
-- Recherche par mots-clés
-- Catégorisation (Académique, Événements, Réussites)
-- Articles à la une
-- Newsletter
-
-### Page Contact
-- Formulaire de contact complet
-- Informations de contact par département
-- FAQ avec questions fréquentes
-- Localisation et horaires
-- Liens de contact rapide
-
-## 🔧 Déploiement
-
-### Build de Production
 ```bash
-pnpm run build
-# ou
-npm run build
+pnpm install
+pnpm dev        # serveur de développement : http://localhost:8080
+pnpm lint       # ESLint
+pnpm build      # build de production dans dist/
+pnpm preview    # sert le build localement
 ```
 
-Le dossier `dist/` contiendra les fichiers optimisés pour la production.
+## Structure
 
-### Options de Déploiement
-- **Vercel** : Déploiement automatique depuis Git
-- **Netlify** : Drag & drop du dossier dist
-- **Hostinger** : Upload via FTP/cPanel
-- **GitHub Pages** : Hébergement gratuit
+```
+index.html                  # point d'entrée HTML (meta, police Poppins)
+public/
+  favicon.ico
+  forms/                    # PDF téléchargeables (inscription, fiche médicale)
+src/
+  main.jsx                  # montage React
+  App.jsx                   # mise en page + choix de la page selon le hash
+  App.css                   # Tailwind + charte graphique (@theme)
+  data/college.js           # coordonnées du collège et liens du menu (source unique)
+  hooks/useHashRoute.js     # routage "#page" ou "#page/param"
+  components/
+    Navbar.jsx  Footer.jsx  BackToTop.jsx
+    PageHero.jsx            # bandeau titre des pages intérieures
+    CtaSection.jsx          # bandeau d'appel à l'action en bas de page
+    FormField.jsx           # champ de formulaire avec label associé
+  pages/
+    Home.jsx  About.jsx  Programs.jsx  Admissions.jsx  News.jsx  Contact.jsx
+  assets/images/
+```
 
-### Configuration pour Hostinger
-1. Créez un build de production
-2. Uploadez le contenu du dossier `dist/` vers `public_html/`
-3. Configurez les redirections si nécessaire
+## Navigation
 
-## 🎨 Personnalisation
+Le routage se fait par le hash de l'URL :
 
-### Logo et Favicon
-- Remplacez `public/favicon.ico` par votre favicon
-- Ajoutez votre logo dans `src/assets/images/`
-- Mettez à jour les références dans les composants
+| URL | Page |
+|---|---|
+| `#accueil` (ou vide) | Accueil |
+| `#apropos` | À propos |
+| `#programmes` | Programmes |
+| `#inscriptions` | Inscriptions |
+| `#actualites` | Actualités |
+| `#actualites/2023` | Archives d'une année |
+| `#contact` | Contact |
 
-### Formulaires de Contact
-- Intégrez EmailJS pour l'envoi d'emails
-- Configurez un backend pour traiter les soumissions
-- Ajoutez la validation côté serveur
+Pour ajouter une page : l'ajouter à `navItems` dans `src/data/college.js` et au tableau `PAGES` de `src/App.jsx`.
 
-### Contenu
-- Modifiez les textes dans les fichiers de pages
-- Ajoutez de vraies images dans `src/assets/images/`
-- Personnalisez les couleurs dans `tailwind.config.js`
+## Charte graphique
 
-### Google Maps
-- Ajoutez une clé API Google Maps
-- Remplacez le placeholder par une vraie carte
-- Configurez les marqueurs de localisation
+Les couleurs sont déclarées dans le bloc `@theme` de `src/App.css` (Tailwind v4 n'utilise pas de `tailwind.config.js`) :
 
-## 📱 Responsive Design
+| Classe | Couleur | Usage |
+|---|---|---|
+| `sakina-blue` | `#1e3a8a` | couleur principale |
+| `sakina-gold` | `#facc15` | accent, sur fond bleu ou en arrière-plan |
+| `sakina-gold-dark` | `#a16207` | texte doré sur fond clair (contraste suffisant) |
+| `sakina-green`, `sakina-red` | `#16a34a`, `#dc2626` | icônes |
 
-Le site est optimisé pour :
-- **Mobile** : 320px - 768px
-- **Tablette** : 768px - 1024px
-- **Desktop** : 1024px+
+Police : Poppins (Google Fonts, chargée dans `index.html`).
 
-### Breakpoints Tailwind
-- `sm:` 640px
-- `md:` 768px
-- `lg:` 1024px
-- `xl:` 1280px
+## Modifier le contenu
 
-## 🔍 SEO et Performance
+- **Coordonnées** (téléphones, e-mails, adresse, réseaux) : uniquement dans `src/data/college.js`.
+- **Textes, programmes, tarifs, actualités** : directement dans les fichiers de `src/pages/`.
 
-### Optimisations Incluses
-- Balises meta appropriées
-- Descriptions optimisées
-- Images avec attributs alt
-- Structure HTML sémantique
-- Chargement optimisé des ressources
+## Limites connues (à traiter avant la mise en ligne)
 
-### Améliorations Possibles
-- Sitemap XML
-- Schema.org markup
-- Optimisation des images WebP
-- Lazy loading des images
-- Service Worker pour le cache
+- **Les formulaires de pré-inscription et de contact n'envoient rien** : la soumission est simulée (voir les `TODO` dans `Admissions.jsx` et `Contact.jsx`). Il faut brancher un service d'envoi (Formspree, EmailJS, Web3Forms…) ou un backend.
+- **Le domaine `sakinacollege.sn` n'existe pas** : les adresses `@sakinacollege.sn` ne reçoivent aucun message.
+- Certaines images proviennent de banques d'images (dont une avec filigrane) et doivent être remplacées par de vraies photos.
+- Les PDF de `public/forms/` ont des accents corrompus et doivent être régénérés.
+- Le routage par hash ne permet pas l'indexation séparée des pages par les moteurs de recherche.
 
-## 🚀 Prochaines Étapes
+## Déploiement
 
-### Intégrations Recommandées
-1. **EmailJS** : Pour les formulaires de contact
-2. **Google Analytics** : Suivi des visiteurs
-3. **Google Maps API** : Carte interactive
-4. **CMS Headless** : Gestion du contenu dynamique
-5. **Base de données** : Stockage des inscriptions
-
-### Fonctionnalités Avancées
-- Espace parent/élève
-- Système de paiement en ligne
-- Calendrier des événements
-- Galerie photos/vidéos
-- Blog intégré
-
-## 📞 Support
-
-Pour toute question technique ou personnalisation :
-- Email : contact@sakinacollege.sn
-- Téléphone : +221 77 532 29 28
-
-## 📄 Licence
-
-Ce projet est développé spécifiquement pour le Collège Privé Musulman Sakina.
-
----
-
-**Développé avec ❤️ pour l'excellence éducative islamique**
-
-# sakinacollege
+Le contenu de `dist/` (après `pnpm build`) peut être servi par n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, Hostinger…). Comme le routage utilise le hash, aucune règle de réécriture n'est nécessaire.
