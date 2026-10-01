@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { BookOpen, Clock, Users, Award, CheckCircle, Calendar, ArrowRight } from 'lucide-react';
-import studentsImage from '../assets/images/students-classroom.jpg';
+import { useState } from 'react';
+import { BookOpen, Clock, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import arabicCalligraphyImage from '../assets/images/arabic-calligraphy.jpg';
+import PageHero from '../components/PageHero';
+import CtaSection from '../components/CtaSection';
 
 const Programs = () => {
   const [activeTab, setActiveTab] = useState('6eme');
@@ -77,6 +78,17 @@ const Programs = () => {
     }
   };
 
+  const levels = Object.keys(programs);
+
+  // Navigation au clavier entre les onglets (flèches gauche/droite)
+  const handleTabKeyDown = (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const offset = e.key === 'ArrowRight' ? 1 : -1;
+    const next = levels[(levels.indexOf(activeTab) + offset + levels.length) % levels.length];
+    setActiveTab(next);
+    document.getElementById(`onglet-${next}`)?.focus();
+  };
+
   const islamicPrograms = [
     {
       title: 'Mémorisation du Coran',
@@ -117,7 +129,7 @@ const Programs = () => {
     { time: '7h30 - 8h00', activity: 'Accueil et préparation' },
     { time: '8h00 - 8h30', activity: 'Récitation coranique matinale' },
     { time: '8h30 - 12h00', activity: 'Cours académiques (4 séances)' },
-    { time: '12h00 - 13h00', activity: 'Pause déjeuner et prière Dhuhr' },
+    { time: '12h00 - 13h00', activity: 'Pause déjeuner et prière de Zhuhr' },
     { time: '13h00 - 15h30', activity: 'Cours académiques (3 séances)' },
     { time: '15h30 - 16h00', activity: 'Pause et goûter' },
     { time: '16h00 - 16h30', activity: 'Cours d\'arabe ou éducation islamique' },
@@ -126,20 +138,10 @@ const Programs = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Section Hero */}
-      <section className="relative bg-gradient-to-br from-sakina-blue to-blue-800 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-white space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold">
-              Nos Programmes Éducatifs
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-200 max-w-3xl mx-auto">
-              Un cursus complet alliant excellence académique et formation spirituelle 
-              de la 6ème à la 3ème
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Nos Programmes Éducatifs"
+        subtitle="Un cursus complet alliant excellence académique et formation spirituelle de la 6ème à la 3ème"
+      />
 
       {/* Section Programmes par niveau */}
       <section className="py-20 bg-white">
@@ -154,10 +156,20 @@ const Programs = () => {
           </div>
 
           {/* Onglets */}
-          <div className="flex flex-wrap justify-center mb-12 bg-gray-100 rounded-2xl p-2">
-            {Object.keys(programs).map((level) => (
+          <div
+            role="tablist"
+            aria-label="Niveaux"
+            onKeyDown={handleTabKeyDown}
+            className="flex flex-wrap justify-center mb-12 bg-gray-100 rounded-2xl p-2"
+          >
+            {levels.map((level) => (
               <button
                 key={level}
+                id={`onglet-${level}`}
+                role="tab"
+                aria-selected={activeTab === level}
+                aria-controls="panneau-niveau"
+                tabIndex={activeTab === level ? 0 : -1}
                 onClick={() => setActiveTab(level)}
                 className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                   activeTab === level
@@ -171,7 +183,12 @@ const Programs = () => {
           </div>
 
           {/* Contenu de l'onglet actif */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div
+            id="panneau-niveau"
+            role="tabpanel"
+            aria-labelledby={`onglet-${activeTab}`}
+            className="grid lg:grid-cols-2 gap-12 items-start"
+          >
             <div className="space-y-8">
               <div>
                 <h3 className="text-3xl font-bold text-sakina-blue mb-4">
@@ -293,7 +310,10 @@ const Programs = () => {
               <img
                 src={arabicCalligraphyImage}
                 alt="Calligraphie arabe"
-                className="rounded-2xl shadow-lg"
+                loading="lazy"
+                width="1000"
+                height="1000"
+                className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>
             <div className="space-y-6">
@@ -421,7 +441,7 @@ const Programs = () => {
 
               <div className="bg-gray-50 p-6 rounded-2xl">
                 <h4 className="text-xl font-semibold text-sakina-blue mb-4">
-                  Activités complémentaires
+                  Clubs et sorties
                 </h4>
                 <div className="grid grid-cols-2 gap-3">
                   {[
@@ -446,34 +466,16 @@ const Programs = () => {
         </div>
       </section>
 
-      {/* Section CTA */}
-      <section className="py-20 bg-sakina-blue text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Intéressé par nos programmes ?
-          </h2>
-          <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
-            Découvrez comment nous pouvons accompagner votre enfant vers la réussite 
-            académique et spirituelle.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#inscriptions"
-              className="bg-sakina-gold text-sakina-blue px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group"
-            >
-              Commencer l'inscription
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-blue transition-all duration-300"
-            >
-              Demander plus d'informations
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Intéressé par nos programmes ?"
+        text="Découvrez comment nous pouvons accompagner votre enfant vers la réussite académique et spirituelle."
+        primary={{
+          label: "Commencer l'inscription",
+          href: '#inscriptions',
+          iconAfter: <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />,
+        }}
+        secondary={{ label: "Demander plus d'informations", href: '#contact' }}
+      />
     </div>
   );
 };
