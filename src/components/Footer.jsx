@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Facebook, MessageCircle } from 'lucide-react';
 import { college, navItems, telHref } from '../data/college';
+import logo from '../assets/images/logo-sakina.webp';
 
 const programs = [
   'Classe de 6ème',
@@ -23,15 +24,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Informations du collège */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-sakina-red rounded-full flex items-center justify-center" aria-hidden="true">
-                <span className="text-sakina-green font-bold text-lg">S</span>
-              </div>
-              <div>
-                <p className="font-bold text-lg">{college.shortName}</p>
-                <p className="text-sakina-red-light text-sm">Excellence & Valeurs</p>
-              </div>
+            {/* Le logo vert et rouge est posé sur une pastille blanche pour rester lisible sur le fond vert */}
+            <div className="inline-block bg-white rounded-xl px-4 py-3">
+              <img src={logo} alt={college.name} width="320" height="101" loading="lazy" className="h-12 w-auto" />
             </div>
+            <p className="text-sakina-red-light text-sm italic">{college.slogan}</p>
             <p className="text-gray-300 text-sm leading-relaxed">
               Un établissement scolaire privé islamique à Dakar, dédié à l'excellence académique
               et à l'éducation morale fondée sur l'Islam.

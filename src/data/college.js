@@ -5,6 +5,7 @@ export const telHref = (phone) => `tel:${phone.replace(/[^\d+]/g, '')}`;
 export const college = {
   name: 'Collège Privé Musulman Sakina',
   shortName: 'Collège Sakina',
+  slogan: 'Le jardin du savoir et de la vertu',
   address: {
     street: 'HLM2, Villa n°664',
     landmark: '(à côté de Auchan HLM)',
