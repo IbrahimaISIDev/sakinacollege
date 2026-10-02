@@ -22,7 +22,7 @@ const PAGE_META = {
   },
   inscriptions: {
     title: `Inscriptions et frais de scolarité${SUFFIX}`,
-    description: "Processus d'inscription, formulaire de pré-inscription, documents requis et frais de scolarité du Collège Sakina à Dakar."
+    description: "Processus d'inscription, pré-inscription, documents requis, frais de scolarité, listes de fournitures et règlement intérieur du Collège Sakina à Dakar."
   },
   actualites: {
     title: `Actualités${SUFFIX}`,

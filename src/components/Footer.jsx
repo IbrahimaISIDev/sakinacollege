@@ -63,6 +63,14 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/inscriptions#documents-utiles"
+                  className="text-gray-300 hover:text-sakina-red-light transition-colors duration-300 text-sm"
+                >
+                  Documents utiles
+                </a>
+              </li>
             </ul>
           </nav>
 
