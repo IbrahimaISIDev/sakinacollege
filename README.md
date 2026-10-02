@@ -25,29 +25,34 @@ VITE_SITE_URL=https://www.exemple.sn pnpm build
 ## Structure
 
 ```
-index.html                  # gabarit HTML (meta, police Poppins)
+index.html                  # gabarit HTML (meta, icônes)
 scripts/prerender.js        # pré-rendu : un HTML par page, 404.html, robots.txt, sitemap.xml
 .github/workflows/ci.yml    # CI : lint + build à chaque push sur main et chaque PR
 public/
   .htaccess                 # hébergement Apache : page 404, en-têtes de sécurité, cache
+  og-image.jpg              # image d'aperçu des liens partagés (1200×630)
   favicon.ico
   forms/                    # PDF téléchargeables (inscription, fiche médicale)
 src/
   main.jsx                  # démarrage côté navigateur (hydratation du HTML pré-rendu)
   entry-server.jsx          # rendu côté serveur, utilisé par le pré-rendu
-  router.js                 # routage par URL (/a-propos, /actualites/2023…)
+  router.js                 # routage par URL, mémoire de défilement, transitions entre pages
   App.jsx                   # mise en page + choix de la page selon l'URL
   App.css                   # Tailwind + charte graphique (@theme)
   data/college.js           # coordonnées du collège et liens du menu (source unique)
-  data/news.js              # actualités et archives
+  data/news.js              # actualités, archives, adresses des articles
   data/seo.js               # titre et description de chaque page, données schema.org
   components/
     Navbar.jsx  Footer.jsx  BackToTop.jsx
     PageHero.jsx            # bandeau titre des pages intérieures
     CtaSection.jsx          # bandeau d'appel à l'action en bas de page
     FormField.jsx           # champ de formulaire avec label associé
+    ArticleCard.jsx         # carte d'actualité (lien vers la page de l'article)
+    AnimatedNumber.jsx      # chiffre animé à l'apparition (chiffres clés de l'accueil)
+    WhatsAppButton.jsx      # bouton WhatsApp flottant
+  hooks/useScrollReveal.js  # apparition douce des sections au défilement
   pages/
-    Home.jsx  About.jsx  Programs.jsx  Admissions.jsx  News.jsx  Contact.jsx  NotFound.jsx
+    Home.jsx  About.jsx  Programs.jsx  Admissions.jsx  News.jsx  Article.jsx  Contact.jsx  NotFound.jsx
   assets/images/            # images WebP
 ```
 
@@ -61,10 +66,13 @@ src/
 | `/inscriptions` | Inscriptions |
 | `/actualites` | Actualités |
 | `/actualites/2023` | Archives d'une année |
+| `/actualites/excellents-resultats-au-bfem-2024` | Page d'un article (adresse tirée du titre) |
 | `/contact` | Contact |
 | autre | Page introuvable (404) |
 
 Les anciennes adresses (`/#apropos`, `/#actualites/2023`…) sont redirigées automatiquement vers les nouvelles.
+
+La navigation se fait sans rechargement, avec un léger fondu entre les pages (View Transitions API). Précédent/Suivant restaurent la position de lecture ; après chaque changement de page, le focus passe sur le titre et la page est annoncée aux lecteurs d'écran. Les animations (fondu, chiffres, apparition des sections) sont désactivées si l'utilisateur a choisi de réduire les animations.
 
 Pour ajouter une page : l'ajouter à `navItems` dans `src/data/college.js`, au tableau `PAGES` de `src/App.jsx` et à `PAGE_META` dans `src/data/seo.js`.
 
@@ -82,12 +90,12 @@ Les couleurs reprennent celles du **logo officiel** et sont déclarées dans le 
 
 Logo : `src/assets/images/logo-sakina.webp` (mot « Sakina » détouré), posé sur une pastille blanche sur fond vert. Favicon et icône Apple tirés du « S » du logo.
 
-Police : Poppins (Google Fonts, chargée dans `index.html`).
+Police : Poppins, hébergée avec le site via `@fontsource/poppins` (sous-ensemble latin, 5 variantes importées dans `src/main.jsx`) : aucune requête vers Google Fonts.
 
 ## Modifier le contenu
 
 - **Coordonnées** (téléphones, e-mails, adresse, réseaux) : uniquement dans `src/data/college.js`.
-- **Actualités** : `src/data/news.js` (une année d'archive ajoutée est pré-rendue automatiquement).
+- **Actualités** : `src/data/news.js`. Chaque article, et chaque année d'archive, obtient automatiquement sa page pré-rendue. L'adresse d'un article est tirée de son titre : **modifier le titre change l'adresse**, et les liens déjà partagés ne fonctionneront plus.
 - **Titres et descriptions pour Google** : `src/data/seo.js`.
 - **Carte** : `mapQuery` dans `src/data/college.js` (idéalement les coordonnées GPS exactes du collège).
 - **Textes, programmes, tarifs** : directement dans les fichiers de `src/pages/`.
