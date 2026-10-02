@@ -14,7 +14,7 @@ const PAGE_META = {
   },
   apropos: {
     title: `À propos${SUFFIX}`,
-    description: "Histoire, mission, vision et valeurs du Collège Privé Musulman Sakina, établissement d'enseignement privé à Dakar."
+    description: "Histoire, mission, vision, mot de la directrice et équipe pédagogique du Collège Privé Musulman Sakina, établissement d'enseignement privé à Dakar."
   },
   programmes: {
     title: `Programmes de la 6ème à la 3ème${SUFFIX}`,
@@ -22,7 +22,7 @@ const PAGE_META = {
   },
   inscriptions: {
     title: `Inscriptions et frais de scolarité${SUFFIX}`,
-    description: "Processus d'inscription, formulaire de pré-inscription, documents requis et frais de scolarité du Collège Sakina à Dakar."
+    description: "Processus d'inscription, pré-inscription, documents requis, frais de scolarité, listes de fournitures et règlement intérieur du Collège Sakina à Dakar."
   },
   actualites: {
     title: `Actualités${SUFFIX}`,

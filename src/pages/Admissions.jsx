@@ -3,6 +3,7 @@ import { FileText, Download, CheckCircle, Phone, Mail, MapPin, AlertCircle } fro
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import FormField from '../components/FormField';
+import UsefulDocuments from '../components/UsefulDocuments';
 import { college, telHref } from '../data/college';
 
 const initialFormData = {
@@ -370,6 +371,8 @@ const Admissions = () => {
           </div>
         </div>
       </section>
+
+      <UsefulDocuments />
 
       <CtaSection
         title="Prêt à inscrire votre enfant ?"

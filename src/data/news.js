@@ -201,6 +201,9 @@ export const CATEGORY_COLORS = {
   achievements: 'bg-yellow-100 text-yellow-800'
 };
 
-// Les dates "AAAA-MM-JJ" sont interprétées en UTC : on formate en UTC pour ne pas décaler d'un jour
+// Les dates "AAAA-MM-JJ" sont interprétées en UTC : on formate en UTC pour ne pas décaler d'un jour.
+// Premier jour du mois au format français : « 1er septembre 2026 ».
 export const formatArticleDate = (dateString) =>
-  new Date(dateString).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+  new Date(dateString)
+    .toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+    .replace(/^1 /, '1er ');
