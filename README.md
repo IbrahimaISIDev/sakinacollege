@@ -70,14 +70,17 @@ Pour ajouter une page : l'ajouter à `navItems` dans `src/data/college.js`, au t
 
 ## Charte graphique
 
-Les couleurs sont déclarées dans le bloc `@theme` de `src/App.css` (Tailwind v4 n'utilise pas de `tailwind.config.js`) :
+Les couleurs reprennent celles du **logo officiel** et sont déclarées dans le bloc `@theme` de `src/App.css` (Tailwind v4 n'utilise pas de `tailwind.config.js`) :
 
 | Classe | Couleur | Usage |
 |---|---|---|
-| `sakina-blue` | `#1e3a8a` | couleur principale |
-| `sakina-gold` | `#facc15` | accent, sur fond bleu ou en arrière-plan |
-| `sakina-gold-dark` | `#a16207` | texte doré sur fond clair (contraste suffisant) |
-| `sakina-green`, `sakina-red` | `#16a34a`, `#dc2626` | icônes |
+| `sakina-green` | `#14461e` | couleur principale : bandeaux, titres, pied de page |
+| `sakina-green-light` | `#1f6b30` | fin des dégradés, survols |
+| `sakina-red` | `#c02424` | accent sur fond clair : boutons, icônes, liens actifs |
+| `sakina-red-dark` | `#9b1c1c` | survol des boutons rouges |
+| `sakina-red-light` | `#f8b4b4` | accent sur fond vert (le rouge du logo y serait illisible) |
+
+Logo : `src/assets/images/logo-sakina.webp` (mot « Sakina » détouré), posé sur une pastille blanche sur fond vert. Favicon et icône Apple tirés du « S » du logo.
 
 Police : Poppins (Google Fonts, chargée dans `index.html`).
 
@@ -95,6 +98,8 @@ Police : Poppins (Google Fonts, chargée dans `index.html`).
 - **Le domaine `sakinacollege.sn` n'existe pas** : les adresses `@sakinacollege.sn` ne reçoivent aucun message.
 - Certaines images proviennent de banques d'images (dont une avec filigrane) et doivent être remplacées par de vraies photos.
 - Les PDF de `public/forms/` ont des accents corrompus et doivent être régénérés.
+- Le fichier du logo fourni est une image basse définition coupée à droite (« l'Excellence » tronqué) : seul le mot « Sakina » est utilisé. Demander à l'école le logo complet en SVG ou en PNG haute définition.
+- L'image de calligraphie (page Programmes) porte la mention « Adobe Stock » : à remplacer ou à licencier.
 - La carte pointe pour l'instant sur « Auchan HLM, Dakar » : à remplacer par les coordonnées exactes.
 - L'adresse publique du site n'est pas encore connue : sans `VITE_SITE_URL`, pas de sitemap ni d'URL canonique.
 
