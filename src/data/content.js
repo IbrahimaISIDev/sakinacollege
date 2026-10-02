@@ -16,9 +16,16 @@ export const director = {
   name: '', // ex. 'Mme Prénom Nom'
   title: 'Directrice',
   photo: '', // ex. '/images/equipe/directrice.webp'
+  // Texte validé le 2026-10-02 (un élément par paragraphe). Sans nom renseigné, la signature
+  // affiche « Directrice du Collège Sakina » et le logo remplace la photo.
   message: [
-    // Un élément par paragraphe, ex. :
-    // 'Chers parents, chers élèves, …',
+    'Chers parents, chers élèves,',
+    "C'est avec une grande joie que je vous souhaite la bienvenue au Collège Sakina. Notre établissement, membre du groupe scolaire Sakina aux côtés de Boushra School, est né de la volonté d'hommes et de femmes déterminés à apporter leur contribution au système éducatif du Sénégal.",
+    "Notre ambition tient dans notre devise : faire de Sakina « le jardin du savoir et de la vertu ». Nous voulons offrir à chaque élève, de la 6ème à la 3ème, un enseignement exigeant, conforme au programme national, tout en lui transmettant les valeurs de l'Islam : le respect, la rigueur, l'honnêteté et le sens des responsabilités.",
+    "Sakina signifie la sérénité. C'est dans ce climat d'apaisement et de confiance que nous accompagnons nos élèves, avec une équipe pédagogique attentive au parcours de chacun, jusqu'aux examens du BFEM et au choix de leur orientation.",
+    "Rien de cela n'est possible sans vous, chers parents. L'éducation de nos enfants est une œuvre commune : notre porte vous est toujours ouverte pour échanger, nous rencontrer et construire ensemble leur réussite.",
+    'À nos élèves, je dis : soyez curieux, travaillez avec constance et ayez confiance en vos capacités. Vous êtes appelés à devenir des citoyens responsables, équilibrés et ambitieux.',
+    'Je souhaite à toutes et à tous une excellente année scolaire.',
   ],
 };
 
