@@ -368,12 +368,15 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-200 h-64 lg:h-auto flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <MapPin className="w-16 h-16 mx-auto mb-4" aria-hidden="true" />
-                  <p className="text-lg font-semibold">Carte Interactive</p>
-                  <p className="text-sm">Intégration Google Maps à venir</p>
-                </div>
+              <div className="bg-gray-200 h-80 lg:h-auto lg:min-h-[24rem]">
+                <iframe
+                  title={`Plan d'accès : ${college.name}`}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(college.mapQuery)}&hl=fr&z=16&output=embed`}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>

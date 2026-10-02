@@ -27,6 +27,9 @@ export const college = {
     schoolLife: 'viesco@sakinacollege.sn',
     accounting: 'comptabilite@sakinacollege.sn',
   },
+  // Recherche affichée par la carte Google Maps de la page Contact.
+  // À remplacer par les coordonnées exactes du collège (ex. '14.7275,-17.4469') pour un repère précis.
+  mapQuery: 'Auchan HLM, Dakar, Sénégal',
   social: {
     facebook: 'https://facebook.com/sakinacollege',
     whatsapp: 'https://wa.me/221775322928',
