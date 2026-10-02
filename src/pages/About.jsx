@@ -1,7 +1,8 @@
-import React from 'react';
 import { Heart, Target, Users, BookOpen, Award, Star, CheckCircle } from 'lucide-react';
-import studentsGroupImage from '../assets/images/students-group.jpg';
-import islamicEducationImage from '../assets/images/islamic-education.jpg';
+import studentsGroupImage from '../assets/images/students-group.webp';
+import islamicEducationImage from '../assets/images/islamic-education.webp';
+import PageHero from '../components/PageHero';
+import CtaSection from '../components/CtaSection';
 
 const About = () => {
   const values = [
@@ -61,20 +62,10 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Section Hero */}
-      <section className="relative bg-gradient-to-br from-sakina-blue to-blue-800 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-white space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold">
-              À propos du Collège Sakina
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-200 max-w-3xl mx-auto">
-              Une institution dédiée à l'excellence académique et à l'éducation morale 
-              fondée sur les valeurs islamiques authentiques
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="À propos du Collège Sakina"
+        subtitle="Une institution dédiée à l'excellence académique et à l'éducation morale fondée sur les valeurs islamiques authentiques"
+      />
 
       {/* Section Histoire */}
       <section className="py-20 bg-white">
@@ -110,7 +101,10 @@ const About = () => {
               <img
                 src={studentsGroupImage}
                 alt="Groupe d'étudiants du Collège Sakina"
-                className="rounded-2xl shadow-lg"
+                loading="lazy"
+                width="1400"
+                height="933"
+                className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>
           </div>
@@ -191,7 +185,10 @@ const About = () => {
               <img
                 src={islamicEducationImage}
                 alt="Éducation islamique"
-                className="rounded-2xl shadow-lg"
+                loading="lazy"
+                width="1400"
+                height="933"
+                className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>
             <div className="space-y-6">
@@ -228,20 +225,19 @@ const About = () => {
             </p>
           </div>
           
+          {/* Mobile : ligne à gauche, cartes empilées. Desktop : cartes alternées de part et d'autre. */}
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-sakina-gold"></div>
-            
-            <div className="space-y-12">
+            <div className="absolute left-2 md:left-1/2 md:-translate-x-1/2 w-1 h-full bg-sakina-gold" aria-hidden="true"></div>
+
+            <ol className="space-y-12">
               {timeline.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center ${
-                    index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                  }`}
+                <li
+                  key={item.year}
+                  className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
+                  <div className={`w-full pl-10 md:w-1/2 ${index % 2 === 0 ? 'md:pl-0 md:pr-8 md:text-right' : 'md:pl-8'}`}>
                     <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="text-2xl font-bold text-sakina-gold mb-2">
+                      <div className="text-2xl font-bold text-sakina-gold-dark mb-2">
                         {item.year}
                       </div>
                       <h3 className="text-xl font-semibold text-sakina-blue mb-3">
@@ -252,46 +248,25 @@ const About = () => {
                       </p>
                     </div>
                   </div>
-                  
-                  <div className="relative z-10">
+
+                  <div className="absolute left-0.5 md:static z-10" aria-hidden="true">
                     <div className="w-4 h-4 bg-sakina-gold rounded-full border-4 border-white shadow-lg"></div>
                   </div>
-                  
-                  <div className="w-1/2"></div>
-                </div>
+
+                  <div className="hidden md:block md:w-1/2"></div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </div>
       </section>
 
-      {/* Section CTA */}
-      <section className="py-20 bg-sakina-blue text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Rejoignez notre famille éducative
-          </h2>
-          <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
-            Découvrez comment nous pouvons accompagner votre enfant vers l'excellence 
-            académique et spirituelle.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#programmes"
-              className="bg-sakina-gold text-sakina-blue px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Découvrir nos programmes
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-blue transition-all duration-300"
-            >
-              Nous rencontrer
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Rejoignez notre famille éducative"
+        text="Découvrez comment nous pouvons accompagner votre enfant vers l'excellence académique et spirituelle."
+        primary={{ label: 'Découvrir nos programmes', href: '/programmes' }}
+        secondary={{ label: 'Nous rencontrer', href: '/contact' }}
+      />
     </div>
   );
 };

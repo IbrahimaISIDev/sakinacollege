@@ -1,112 +1,47 @@
-# Changelog - Améliorations du Site Web Collège Sakina
+# Changelog
 
-## Version 2.0 - Intégration des Informations Officielles
+## [Non publié]
 
-### 🎯 Améliorations Majeures
+### SEO et URL
+- Vraies URL (`/a-propos`, `/programmes`, `/actualites/2023`…) à la place du routage par hash ; les anciennes adresses `#page` sont redirigées.
+- Pré-rendu HTML de chaque page au build : contenu indexable sans JavaScript, titre et description propres à chaque page.
+- Open Graph, données structurées schema.org (School), robots.txt, et avec `VITE_SITE_URL` : URL canoniques et sitemap.xml.
+- Page 404 dédiée.
 
-#### Page Programmes
-- ✅ **Sciences Religieuses** : Intégration complète des matières selon les images fournies
-  - Mémorisation du Coran avec programme détaillé
-  - Tawhid (enseignement de l'unicité divine)
-  - Études de versets avec Tafsir
-  - Éducation islamique complète (Akhlaq, Piliers de l'Islam, Invocations)
+### Performance
+- Images converties en WebP et redimensionnées : 1,17 Mo → 220 Ko.
 
-- ✅ **Programme Spécial** : Nouvelle section ajoutée
-  - Taekwondo (art martial coréen)
-  - Football (sport collectif)
-  - Initiation à l'informatique (nouvelles technologies)
-  - Développement personnel du musulman
+### Ajouté
+- Carte Google Maps intégrée sur la page Contact (sans clé d'API).
+- `.htaccess` pour Apache : page 404, en-têtes de sécurité, cache.
+- Intégration continue GitHub Actions (lint + build).
 
-- ✅ **Citation Officielle** : Ajout de la devise
-  - "Un enseignement de qualité dans le respect des valeurs islamiques"
 
-- ✅ **Programme Franco-Islamique** : Description mise à jour
-  - Excellence académique (français, anglais, nouvelles technologies)
-  - Formation spirituelle (Coran, Religion, sérénité Sakina)
-  - Mission : "Le jardin du savoir et de la vertu"
+### Corrigé
+- Charte graphique : les couleurs `sakina-*` sont déclarées dans `@theme` (Tailwind v4 ignorait `tailwind.config.js`). Dégradés des en-têtes, survols, focus et état actif du menu fonctionnent à nouveau.
+- Police Poppins réellement chargée (lien dans `index.html`).
+- Actualités : « Lire la suite » affiche l'article ; les articles à la une ne disparaissent plus avec un filtre ; message « aucun résultat » fiable ; compteurs calculés ; recherche insensible aux accents ; archives accessibles par URL (`#actualites/2023`) avec retour navigateur ; archive 2024 vide supprimée.
+- Le formulaire newsletter, qui rechargeait la page et renvoyait à l'accueil, est remplacé par des liens Facebook et WhatsApp.
+- Liens morts du pied de page supprimés (Instagram, YouTube, mentions légales, confidentialité) ; lien Facebook réel.
+- Téléphones et e-mails cliquables (`tel:` et `mailto:`) ; année du copyright dynamique.
+- Tableau des frais lisible sur mobile (cartes) ; frise chronologique sur une colonne sur mobile.
+- Un hash inconnu affiche l'accueil avec le bon lien actif.
 
-#### Page À Propos
-- ✅ **Mission Officielle** : Mise à jour avec le texte exact des images
-  - Formation de jeunes citoyens responsables, équilibrés et ambitieux
-  - Participation au développement du pays
-  - Intervention dans les hautes sphères de décision
+### Accessibilité
+- Labels liés aux champs, champs obligatoires signalés, messages de confirmation annoncés (`aria-live`).
+- Menu mobile : `aria-label`, `aria-expanded`, liens hors tabulation quand il est fermé.
+- Onglets des programmes avec rôles ARIA et navigation aux flèches.
+- Un seul `h1` par page, `aria-current` sur le lien actif, lien « Aller au contenu ».
+- Texte doré sur fond clair remplacé par `sakina-gold-dark` (contraste AA) ; respect de `prefers-reduced-motion`.
 
-#### Page Contact
-- ✅ **Informations de Contact Complètes** :
-  - Adresse précise : HLM2, Villa n°664 (à côté de Auchan HLM)
-  - Téléphones multiples : +221 33 848 98 33, +221 77 532 29 28, +221 77 681 30 88, +221 77 328 04 11
-  - Email principal : collegesakina@gmail.com
-  - Lien Facebook : facebook/sakinacollege
+### Technique
+- Suppression de 46 composants shadcn/ui inutilisés et de 48 dépendances inutilisées ; mise à jour des dépendances (0 vulnérabilité connue).
+- Coordonnées centralisées dans `src/data/college.js` ; composants partagés `PageHero`, `CtaSection` et `FormField` ; hook `useHashRoute`.
+- ESLint sans erreur, avec `react/jsx-uses-vars` à la place de l'exception `^[A-Z_]` qui masquait les imports inutilisés.
+- `dist/` et `.vite/` retirés du dépôt et ignorés.
 
-- ✅ **Section Suivi Pédagogique** : Nouvelle section ajoutée
-  - Corps professoral compétent
-  - 1 bulletin par programme (sénégalais et religieux)
-  - Prière Zhuhr et 'Asr en groupe
-  - Prière du vendredi assurée
-  - Rappel après chaque prière de Zhuhr
+## 2025-07-20
+- Ajout du bouton « retour en haut », des formulaires PDF et des archives d'actualités.
 
-- ✅ **Services Optionnels** :
-  - Cantine (repas équilibrés)
-  - Transport (zones desservies)
-
-#### Footer
-- ✅ **Informations de Contact Mises à Jour** :
-  - Tous les numéros de téléphone
-  - Adresse complète avec indication Auchan HLM
-  - Emails multiples
-  - Lien Facebook fonctionnel
-
-### 🎨 Améliorations Design
-
-#### Cohérence Visuelle
-- ✅ **Icônes Cohérentes** : Utilisation d'icônes appropriées pour chaque section
-- ✅ **Couleurs Harmonieuses** : Respect de la charte graphique (bleu nuit, doré)
-- ✅ **Mise en Page** : Sections bien structurées avec espacement optimal
-
-#### Éléments Visuels
-- ✅ **Cercles Colorés** : Pour les éléments de suivi pédagogique
-- ✅ **Emojis Appropriés** : Pour les programmes spéciaux
-- ✅ **Citations Stylisées** : Mise en évidence des messages importants
-
-### 📱 Responsive Design
-- ✅ **Mobile-First** : Toutes les nouvelles sections sont responsive
-- ✅ **Tablette** : Adaptation parfaite sur tous les formats
-- ✅ **Desktop** : Mise en page optimisée pour grands écrans
-
-### 🔧 Améliorations Techniques
-- ✅ **Performance** : Build optimisé (284KB JS, 52KB CSS)
-- ✅ **SEO** : Métadonnées mises à jour
-- ✅ **Accessibilité** : Textes alternatifs et structure sémantique
-
-### 📊 Statistiques du Projet
-
-#### Taille du Build
-- **JavaScript** : 284.77 KB (77.35 KB gzippé)
-- **CSS** : 52.09 KB (8.57 KB gzippé)
-- **Images** : ~1.2 MB (optimisées)
-- **Total** : ~1.5 MB
-
-#### Pages Mises à Jour
-- **Programmes** : +2 nouvelles sections, contenu enrichi
-- **À Propos** : Mission officielle intégrée
-- **Contact** : +1 section suivi pédagogique, informations complètes
-- **Footer** : Informations de contact mises à jour
-
-### 🚀 Prochaines Étapes Recommandées
-
-#### Intégrations Futures
-1. **EmailJS** : Pour les formulaires de contact fonctionnels
-2. **Google Maps** : Carte interactive avec localisation précise
-3. **Galerie Photos** : Images réelles de l'établissement
-4. **Système de Paiement** : Pour les frais de scolarité en ligne
-
-#### Contenu Dynamique
-1. **CMS** : Gestion des actualités par l'administration
-2. **Espace Parents** : Suivi des notes et absences
-3. **Calendrier** : Événements et activités scolaires
-
----
-
-**Développé avec ❤️ pour l'excellence éducative islamique**
-*Version mise à jour le 18 juillet 2025*
-
+## 2025-07-18
+- Initialisation du projet.
