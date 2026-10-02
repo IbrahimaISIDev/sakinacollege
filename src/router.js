@@ -57,15 +57,24 @@ function saveScrollPosition() {
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Élément visé par une ancre ("#documents-utiles"), s'il existe dans la page
+const anchorTarget = (hash) => (hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null);
+
 // Met à jour la page (de façon synchrone, pour que la transition capture le nouvel état) puis
-// positionne le défilement. Fondu léger via la View Transitions API quand elle est disponible.
-function renderNavigation(scrollTop) {
+// positionne le défilement : sur l'ancre de l'adresse pour une nouvelle navigation (toAnchor),
+// sinon à scrollTop. Fondu léger via la View Transitions API quand elle est disponible.
+function renderNavigation(scrollTop, { toAnchor = false } = {}) {
   let done = false;
   const update = () => {
     if (done) return;
     done = true;
     flushSync(() => window.dispatchEvent(new Event(NAVIGATE_EVENT)));
-    window.scrollTo({ top: scrollTop, behavior: 'instant' });
+    const target = toAnchor ? anchorTarget(window.location.hash) : null;
+    if (target) {
+      target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    } else {
+      window.scrollTo({ top: scrollTop, behavior: 'instant' });
+    }
   };
 
   if (!document.startViewTransition || prefersReducedMotion() || document.visibilityState !== 'visible') {
@@ -84,7 +93,18 @@ export function navigate(to) {
   saveScrollPosition();
   activeKey = newKey();
   window.history.pushState({ key: activeKey }, '', to);
-  renderNavigation(0);
+  renderNavigation(0, { toAnchor: true });
+}
+
+// Ancre dans la page courante : défilement jusqu'à l'élément, avec une entrée d'historique
+// (Précédent ramène à la position d'avant)
+function scrollToAnchor(hash) {
+  const target = anchorTarget(hash);
+  if (!target) return;
+  saveScrollPosition();
+  activeKey = newKey();
+  window.history.pushState({ key: activeKey }, '', hash);
+  target.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'instant' : 'smooth' });
 }
 
 function handlePopState() {
@@ -125,12 +145,14 @@ export function interceptLinkClicks(event) {
     return;
   }
   const url = new URL(link.href);
-  if (url.origin !== window.location.origin || url.hash) {
+  if (url.origin !== window.location.origin) {
     return;
   }
   event.preventDefault();
   if (url.pathname !== window.location.pathname) {
-    navigate(url.pathname);
+    navigate(url.pathname + url.hash);
+  } else if (url.hash) {
+    scrollToAnchor(url.hash);
   }
 }
 
