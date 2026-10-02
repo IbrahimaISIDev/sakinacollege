@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Section Hero */}
-      <section className="relative bg-gradient-to-br from-sakina-green via-sakina-green-light to-sakina-green min-h-screen flex items-center">
+      <section className="relative bg-gradient-to-br from-sakina-green via-sakina-green-light to-sakina-green py-16 md:py-24 lg:py-28">
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
