@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
@@ -72,6 +73,7 @@ function App({ url }) {
         <Page param={param} />
       </main>
       <Footer />
+      <WhatsAppButton />
       <BackToTop />
       <div className="sr-only" role="status" aria-live="polite">
         {announcement}
