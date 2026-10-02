@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
@@ -10,6 +11,7 @@ import News from './pages/News';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { useRoute, interceptLinkClicks } from './router';
+import { useScrollReveal } from './hooks/useScrollReveal';
 import { getPageMeta } from './data/seo';
 import './App.css';
 
@@ -33,12 +35,28 @@ function App({ url }) {
     return () => document.removeEventListener('click', interceptLinkClicks);
   }, []);
 
-  // À chaque changement de page : remonter en haut et mettre à jour le titre et la description
+  useScrollReveal([page, param]);
+
+  const [announcement, setAnnouncement] = useState('');
+  const isFirstRender = useRef(true);
+
+  // À chaque changement de page : titre et description, puis (sauf au premier affichage)
+  // focus sur le titre de la page et annonce pour les lecteurs d'écran. Le défilement est géré par le routeur.
   useEffect(() => {
-    window.scrollTo({ top: 0 });
     const { title, description } = getPageMeta(page, param);
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const heading = document.querySelector('#contenu h1');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    }
+    setAnnouncement(`Page chargée : ${heading?.textContent || title}`);
   }, [page, param]);
 
   return (
@@ -58,7 +76,11 @@ function App({ url }) {
         <Page param={param} />
       </main>
       <Footer />
+      <WhatsAppButton />
       <BackToTop />
+      <div className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </div>
     </div>
   );
 }

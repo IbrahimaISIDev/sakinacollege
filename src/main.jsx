@@ -1,9 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
+// Police Poppins hébergée avec le site (sous-ensemble latin, suffisant pour le français)
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-400-italic.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource/poppins/latin-700.css';
 import App from './App.jsx';
-import { parsePath, redirectLegacyHash } from './router';
+import { initRouter, parsePath, redirectLegacyHash } from './router';
 
 redirectLegacyHash();
+initRouter();
 
 const root = document.getElementById('root');
 

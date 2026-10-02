@@ -3,6 +3,7 @@ import heroImage from '../assets/images/hero-image.webp';
 import studentsImage from '../assets/images/students-classroom.webp';
 import islamicEducationImage from '../assets/images/islamic-education.webp';
 import CtaSection from '../components/CtaSection';
+import AnimatedNumber from '../components/AnimatedNumber';
 
 const Home = () => {
   const features = [
@@ -48,7 +49,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Section Hero */}
-      <section className="relative bg-gradient-to-br from-sakina-green via-sakina-green-light to-sakina-green min-h-screen flex items-center">
+      <section className="relative bg-gradient-to-br from-sakina-green via-sakina-green-light to-sakina-green py-16 md:py-24 lg:py-28">
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -124,8 +125,8 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-sakina-green mb-2">
-                  {stat.number}
+                <div className="text-4xl md:text-5xl font-bold text-sakina-green mb-2 tabular-nums">
+                  <AnimatedNumber value={stat.number} />
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>

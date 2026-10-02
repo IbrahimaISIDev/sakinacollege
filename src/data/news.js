@@ -166,3 +166,41 @@ export const archiveData = {
 };
 
 export const archiveYears = Object.keys(archiveData).sort().reverse();
+
+// Adresse lisible d'un article, calculée à partir de son titre :
+// "Excellents résultats au BFEM 2024" -> "excellents-resultats-au-bfem-2024"
+export const slugify = (text) =>
+  text
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+// Tous les articles (actualités récentes et archives), chacun avec son adresse
+export const allArticles = [...news, ...Object.values(archiveData).flat()].map((article) => ({
+  ...article,
+  slug: slugify(article.title),
+}));
+
+export const articlePath = (article) => `/actualites/${article.slug ?? slugify(article.title)}`;
+
+export const findArticle = (slug) => allArticles.find((article) => article.slug === slug);
+
+export const isArchiveYear = (param) => /^\d{4}$/.test(param);
+
+export const CATEGORY_NAMES = {
+  academic: 'Académique',
+  events: 'Événements',
+  achievements: 'Réussites'
+};
+
+export const CATEGORY_COLORS = {
+  academic: 'bg-green-100 text-green-800',
+  events: 'bg-red-100 text-red-800',
+  achievements: 'bg-yellow-100 text-yellow-800'
+};
+
+// Les dates "AAAA-MM-JJ" sont interprétées en UTC : on formate en UTC pour ne pas décaler d'un jour
+export const formatArticleDate = (dateString) =>
+  new Date(dateString).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });

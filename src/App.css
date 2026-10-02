@@ -31,3 +31,31 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Fondu entre les pages (View Transitions API, ignoré par les navigateurs qui ne la gèrent pas) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+
+/* Titres rendus focalisables par programme après une navigation : pas de contour visible */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Apparition des sections au défilement (classes ajoutées par useScrollReveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media print {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

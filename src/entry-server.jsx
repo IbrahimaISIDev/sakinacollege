@@ -3,15 +3,16 @@ import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './App.jsx';
 import { navItems } from './data/college';
-import { getPageMeta, getSchoolJsonLd, SITE_URL } from './data/seo';
+import { getArticleJsonLd, getPageMeta, getSchoolJsonLd, SITE_URL } from './data/seo';
 import { parsePath } from './router';
-import { archiveYears } from './data/news';
+import { allArticles, archiveYears, articlePath } from './data/news';
 
-export { getPageMeta, getSchoolJsonLd, SITE_URL, parsePath };
+export { getArticleJsonLd, getPageMeta, getSchoolJsonLd, SITE_URL, parsePath };
 
 export const routes = [
   ...navItems.map((item) => item.path),
   ...archiveYears.map((year) => `/actualites/${year}`),
+  ...allArticles.map(articlePath),
 ];
 
 export function render(url) {

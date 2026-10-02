@@ -8,7 +8,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(rootDir, 'dist');
 const ssrDir = path.join(rootDir, 'dist-ssr');
 
-const { render, routes, getPageMeta, getSchoolJsonLd, parsePath, SITE_URL } = await import(
+const { render, routes, getPageMeta, getSchoolJsonLd, getArticleJsonLd, parsePath, SITE_URL } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 );
 
@@ -17,8 +17,8 @@ const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 const escapeHtml = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-// Image de partage (Open Graph) : l'image d'accueil générée par Vite
-const heroImage = fs.readdirSync(path.join(distDir, 'assets')).find((file) => file.startsWith('hero-image'));
+// Image de partage (Open Graph), servie depuis public/
+const OG_IMAGE = { path: '/og-image.jpg', width: 1200, height: 630, alt: 'Logo et nom du Collège Privé Musulman Sakina' };
 
 function buildHead(url, { indexable }) {
   const { page, param } = parsePath(url);
@@ -35,17 +35,19 @@ function buildHead(url, { indexable }) {
   if (SITE_URL) {
     tags.push(`<link rel="canonical" href="${SITE_URL}${url}" />`);
     tags.push(`<meta property="og:url" content="${SITE_URL}${url}" />`);
-    if (heroImage) {
-      tags.push(`<meta property="og:image" content="${SITE_URL}/assets/${heroImage}" />`);
-    }
+    tags.push(`<meta property="og:image" content="${SITE_URL}${OG_IMAGE.path}" />`);
+    tags.push(`<meta property="og:image:width" content="${OG_IMAGE.width}" />`);
+    tags.push(`<meta property="og:image:height" content="${OG_IMAGE.height}" />`);
+    tags.push(`<meta property="og:image:alt" content="${escapeHtml(OG_IMAGE.alt)}" />`);
   }
   if (!indexable) {
     tags.push(`<meta name="robots" content="noindex" />`);
   }
-  if (page === 'accueil') {
+  // Données structurées : l'établissement sur l'accueil, l'article sur les pages d'actualité
+  const jsonLd = page === 'accueil' ? getSchoolJsonLd() : page === 'actualites' && param ? getArticleJsonLd(param) : null;
+  if (jsonLd) {
     // "<" échappé pour qu'aucune donnée ne puisse fermer la balise <script>
-    const jsonLd = JSON.stringify(getSchoolJsonLd()).replace(/</g, '\\u003c');
-    tags.push(`<script type="application/ld+json">${jsonLd}</script>`);
+    tags.push(`<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>`);
   }
 
   return { title, description, tags };

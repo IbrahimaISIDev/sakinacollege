@@ -1,21 +1,11 @@
 import { useState } from 'react';
-import { Calendar, User, ArrowRight, Search, Facebook, MessageCircle } from 'lucide-react';
+import { Search, Facebook, MessageCircle } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import ArticleCard from '../components/ArticleCard';
+import Article from './Article';
+import NotFound from './NotFound';
 import { college } from '../data/college';
-import { news, archiveData, archiveYears } from '../data/news';
-
-const CATEGORY_NAMES = {
-  academic: 'Académique',
-  events: 'Événements',
-  achievements: 'Réussites'
-};
-
-const CATEGORY_COLORS = {
-  academic: 'bg-green-100 text-green-800',
-  events: 'bg-red-100 text-red-800',
-  achievements: 'bg-yellow-100 text-yellow-800'
-};
-
+import { news, archiveData, archiveYears, CATEGORY_NAMES, findArticle, isArchiveYear } from '../data/news';
 
 const categories = [
   { id: 'all', name: 'Toutes les actualités', count: news.length },
@@ -28,79 +18,6 @@ const categories = [
 
 // Recherche insensible à la casse et aux accents
 const normalize = (text) => text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
-
-// Les dates "AAAA-MM-JJ" sont interprétées en UTC : on formate en UTC pour ne pas décaler d'un jour
-const formatDate = (dateString) =>
-  new Date(dateString).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
-
-const ArticleCard = ({ article, featured = false }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const contentId = `article-${article.id}-contenu`;
-
-  return (
-    <article
-      className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 group ${
-        featured ? 'shadow-lg hover:shadow-xl' : 'border border-gray-200 hover:shadow-lg'
-      }`}
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={article.image}
-          alt=""
-          loading="lazy"
-          className={`w-full object-cover group-hover:scale-105 transition-transform duration-300 ${featured ? 'h-64' : 'h-48'}`}
-        />
-        <div className="absolute top-3 left-3">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${CATEGORY_COLORS[article.category]}`}>
-            {CATEGORY_NAMES[article.category]}
-          </span>
-        </div>
-      </div>
-
-      <div className="p-6">
-        <div className="flex flex-wrap items-center text-sm text-gray-500 mb-3 gap-x-2">
-          <Calendar className="w-4 h-4" aria-hidden="true" />
-          <time dateTime={article.date}>{formatDate(article.date)}</time>
-          {featured && (
-            <>
-              <span aria-hidden="true">•</span>
-              <User className="w-4 h-4" aria-hidden="true" />
-              <span>{article.author}</span>
-            </>
-          )}
-        </div>
-
-        <h3 className={`font-bold text-sakina-green mb-3 ${featured ? 'text-xl' : 'text-lg'}`}>
-          {article.title}
-        </h3>
-
-        <p className="text-gray-600 mb-4 leading-relaxed">
-          {article.excerpt}
-        </p>
-
-        {isExpanded && (
-          <p id={contentId} className="text-gray-700 mb-4 leading-relaxed">
-            {article.content}
-          </p>
-        )}
-
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}
-          aria-controls={contentId}
-          className="text-sakina-green font-semibold hover:text-sakina-red transition-colors duration-300 flex items-center group/btn"
-        >
-          {isExpanded ? 'Réduire' : 'Lire la suite'}
-          <span className="sr-only"> : {article.title}</span>
-          <ArrowRight
-            className={`w-4 h-4 ml-2 transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'group-hover/btn:translate-x-1'}`}
-            aria-hidden="true"
-          />
-        </button>
-      </div>
-    </article>
-  );
-};
 
 const ArchiveYear = ({ year }) => {
   const articles = archiveData[year] || [];
@@ -132,12 +49,17 @@ const ArchiveYear = ({ year }) => {
   );
 };
 
-const News = ({ param: archiveYear }) => {
+// param : année d'archive (/actualites/2023) ou adresse d'un article (/actualites/<titre-de-l-article>)
+const News = ({ param }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  if (archiveYear) {
-    return <ArchiveYear year={archiveYear} />;
+  if (param) {
+    if (isArchiveYear(param)) {
+      return <ArchiveYear year={param} />;
+    }
+    const article = findArticle(param);
+    return article ? <Article article={article} /> : <NotFound />;
   }
 
   const query = normalize(searchTerm.trim());

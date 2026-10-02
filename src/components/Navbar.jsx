@@ -1,11 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { college, navItems, telHref } from '../data/college';
 import logo from '../assets/images/logo-sakina.webp';
 
 const Navbar = ({ currentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
   const closeMenu = () => setIsMenuOpen(false);
+
+  // Menu mobile ouvert : la page derrière ne défile plus, et Échap le ferme (focus rendu au bouton)
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -80,6 +98,7 @@ const Navbar = ({ currentPage }) => {
 
             {/* Bouton menu mobile */}
             <button
+              ref={menuButtonRef}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
               aria-expanded={isMenuOpen}
@@ -95,8 +114,8 @@ const Navbar = ({ currentPage }) => {
         <div
           id="menu-mobile"
           inert={!isMenuOpen}
-          className={`md:hidden bg-white border-t transition-all duration-300 ease-in-out overflow-hidden ${
-            isMenuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
+          className={`md:hidden bg-white border-t transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-[calc(100svh-5rem)] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0 overflow-hidden'
           }`}
         >
           <div className="container mx-auto px-4 py-4">

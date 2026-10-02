@@ -2,6 +2,17 @@
 
 ## [Non publié]
 
+### Expérience utilisateur
+- Une page par actualité (`/actualites/<titre>`) avec fil d'Ariane, partage WhatsApp/Facebook, copie du lien et suggestions « À lire aussi » ; les cartes d'actualité sont entièrement cliquables. Pages pré-rendues avec données structurées `NewsArticle`.
+- Navigation : léger fondu entre les pages, position de lecture restaurée avec Précédent/Suivant et au rechargement, focus sur le titre et annonce de la page pour les lecteurs d'écran.
+- Chiffres clés de l'accueil animés à leur apparition ; sections qui apparaissent en douceur au défilement. Sans effet pour les personnes qui réduisent les animations, et contenu complet dans le HTML pré-rendu.
+- Bouton WhatsApp flottant avec message pré-rempli.
+- Accueil : bandeau d'introduction à la hauteur de son contenu (il occupait tout l'écran).
+- Menu mobile : fermeture avec Échap, page bloquée derrière le menu ouvert, menu défilable sur les petits écrans.
+- Police Poppins hébergée avec le site (plus de requête vers Google Fonts).
+- Image d'aperçu dédiée pour les liens partagés (logo et nom du collège, 1200×630).
+
+
 ### Identité visuelle
 - Intégration du logo officiel dans la barre de navigation et le pied de page ; nouveau favicon et icône Apple tirés du « S » du logo.
 - Charte graphique alignée sur le logo : vert `#14461e` (remplace le bleu nuit) et rouge `#c02424` (remplace le doré), avec un rouge clair pour les accents sur fond vert. Contrastes conformes WCAG AA.
