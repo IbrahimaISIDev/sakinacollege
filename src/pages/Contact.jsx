@@ -67,7 +67,7 @@ const faqItems = [
   }
 ];
 
-const linkClasses = 'text-gray-600 hover:text-sakina-blue underline-offset-2 hover:underline transition-colors duration-300';
+const linkClasses = 'text-gray-600 hover:text-sakina-green underline-offset-2 hover:underline transition-colors duration-300';
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialFormData);
@@ -103,7 +103,7 @@ const Contact = () => {
       details: allPhones.map((phone) => ({ text: phone, href: telHref(phone) }))
     },
     {
-      icon: <Mail className="w-6 h-6 text-sakina-gold-dark" aria-hidden="true" />,
+      icon: <Mail className="w-6 h-6 text-sakina-red" aria-hidden="true" />,
       title: "Emails",
       details: [college.emails.main, college.emails.contact].map((email) => ({ text: email, href: `mailto:${email}` }))
     },
@@ -125,7 +125,7 @@ const Contact = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-sakina-green mb-4">
               Nos Coordonnées
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -139,7 +139,7 @@ const Contact = () => {
                 <div className="flex justify-center mb-4">
                   {info.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-sakina-blue mb-3">
+                <h3 className="text-xl font-semibold text-sakina-green mb-3">
                   {info.title}
                 </h3>
                 <div className="space-y-2">
@@ -160,7 +160,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-sakina-blue mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-sakina-green mb-4">
                 Envoyez-nous un Message
               </h2>
               <p className="text-gray-600 text-lg">
@@ -200,7 +200,7 @@ const Contact = () => {
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="bg-sakina-gold text-sakina-blue px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto"
+                      className="bg-sakina-red text-white px-8 py-3 rounded-full font-semibold hover:bg-sakina-red-dark transition-colors duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto"
                     >
                       <Send size={20} aria-hidden="true" />
                       <span>Envoyer le message</span>
@@ -217,7 +217,7 @@ const Contact = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-sakina-green mb-4">
               Nos Départements
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -228,18 +228,18 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {departments.map((dept) => (
               <div key={dept.name} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-sakina-blue mb-4">
+                <h3 className="text-lg font-semibold text-sakina-green mb-4">
                   {dept.name}
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
-                    <Mail size={16} className="text-sakina-gold-dark flex-shrink-0" aria-hidden="true" />
+                    <Mail size={16} className="text-sakina-red flex-shrink-0" aria-hidden="true" />
                     <a href={`mailto:${dept.email}`} className={`text-sm break-all ${linkClasses}`}>
                       {dept.email}
                     </a>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Phone size={16} className="text-sakina-gold-dark flex-shrink-0" aria-hidden="true" />
+                    <Phone size={16} className="text-sakina-red flex-shrink-0" aria-hidden="true" />
                     <a href={telHref(dept.phone)} className={`text-sm ${linkClasses}`}>
                       {dept.phone}
                     </a>
@@ -252,13 +252,13 @@ const Contact = () => {
       </section>
 
       {/* Suivi Pédagogique */}
-      <section className="py-20 bg-gradient-to-r from-sakina-blue to-blue-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-sakina-green to-sakina-green-light text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Notre Suivi Pédagogique
             </h2>
-            <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+            <p className="text-green-100 text-lg max-w-2xl mx-auto">
               Un accompagnement complet pour la réussite de nos élèves
             </p>
           </div>
@@ -272,7 +272,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold">{title}</h3>
-                    <p className="text-blue-100 text-sm">{description}</p>
+                    <p className="text-green-100 text-sm">{description}</p>
                   </div>
                 </div>
               </div>
@@ -289,7 +289,7 @@ const Contact = () => {
                       <span className="text-2xl" aria-hidden="true">{emoji}</span>
                     </div>
                     <p className="font-semibold">{label}</p>
-                    <p className="text-sm text-blue-100">En option</p>
+                    <p className="text-sm text-green-100">En option</p>
                   </div>
                 ))}
               </div>
@@ -302,7 +302,7 @@ const Contact = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-sakina-green mb-4">
               Questions Fréquentes
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -313,7 +313,7 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto space-y-6">
             {faqItems.map((item) => (
               <div key={item.question} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-sakina-blue mb-3">
+                <h3 className="text-lg font-semibold text-sakina-green mb-3">
                   {item.question}
                 </h3>
                 <p className="text-gray-600">
@@ -329,7 +329,7 @@ const Contact = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-sakina-green mb-4">
               Notre Localisation
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -340,12 +340,12 @@ const Contact = () => {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="grid lg:grid-cols-2">
               <div className="p-8 lg:p-12">
-                <h3 className="text-2xl font-bold text-sakina-blue mb-6">
+                <h3 className="text-2xl font-bold text-sakina-green mb-6">
                   Adresse Complète
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-6 h-6 text-sakina-gold-dark mt-1 flex-shrink-0" aria-hidden="true" />
+                    <MapPin className="w-6 h-6 text-sakina-red mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <p className="font-semibold text-gray-800">{college.address.street}</p>
                       <p className="text-gray-600">{college.address.landmark}</p>
@@ -353,15 +353,15 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Phone className="w-6 h-6 text-sakina-gold-dark flex-shrink-0" aria-hidden="true" />
+                    <Phone className="w-6 h-6 text-sakina-red flex-shrink-0" aria-hidden="true" />
                     <a href={telHref(college.phones.main)} className={linkClasses}>{college.phones.main}</a>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="w-6 h-6 text-sakina-gold-dark flex-shrink-0" aria-hidden="true" />
+                    <Mail className="w-6 h-6 text-sakina-red flex-shrink-0" aria-hidden="true" />
                     <a href={`mailto:${college.emails.main}`} className={`break-all ${linkClasses}`}>{college.emails.main}</a>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Facebook className="w-6 h-6 text-sakina-gold-dark flex-shrink-0" aria-hidden="true" />
+                    <Facebook className="w-6 h-6 text-sakina-red flex-shrink-0" aria-hidden="true" />
                     <a href={college.social.facebook} target="_blank" rel="noopener noreferrer" className={linkClasses}>
                       facebook.com/sakinacollege
                     </a>

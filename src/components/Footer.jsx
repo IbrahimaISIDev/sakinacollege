@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Facebook, MessageCircle } from 'lucide-react';
 import { college, navItems, telHref } from '../data/college';
+import logo from '../assets/images/logo-sakina.webp';
 
 const programs = [
   'Classe de 6ème',
@@ -11,27 +12,23 @@ const programs = [
 ];
 
 const socialLinks = [
-  { label: 'Facebook', href: college.social.facebook, icon: Facebook, hover: 'hover:bg-sakina-gold hover:text-sakina-blue' },
+  { label: 'Facebook', href: college.social.facebook, icon: Facebook, hover: 'hover:bg-white hover:text-sakina-green' },
   { label: 'WhatsApp', href: college.social.whatsapp, icon: MessageCircle, hover: 'hover:bg-green-500' },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-sakina-blue text-white">
+    <footer className="bg-sakina-green text-white">
       {/* Section principale du footer */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Informations du collège */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-sakina-gold rounded-full flex items-center justify-center" aria-hidden="true">
-                <span className="text-sakina-blue font-bold text-lg">S</span>
-              </div>
-              <div>
-                <p className="font-bold text-lg">{college.shortName}</p>
-                <p className="text-sakina-gold text-sm">Excellence & Valeurs</p>
-              </div>
+            {/* Le logo vert et rouge est posé sur une pastille blanche pour rester lisible sur le fond vert */}
+            <div className="inline-block bg-white rounded-xl px-4 py-3">
+              <img src={logo} alt={college.name} width="320" height="101" loading="lazy" className="h-12 w-auto" />
             </div>
+            <p className="text-sakina-red-light text-sm italic">{college.slogan}</p>
             <p className="text-gray-300 text-sm leading-relaxed">
               Un établissement scolaire privé islamique à Dakar, dédié à l'excellence académique
               et à l'éducation morale fondée sur l'Islam.
@@ -54,13 +51,13 @@ const Footer = () => {
 
           {/* Liens rapides */}
           <nav aria-label="Liens rapides" className="space-y-4">
-            <h2 className="font-semibold text-lg text-sakina-gold">Liens Rapides</h2>
+            <h2 className="font-semibold text-lg text-sakina-red-light">Liens Rapides</h2>
             <ul className="space-y-2">
               {navItems.map((link) => (
                 <li key={link.page}>
                   <a
                     href={link.path}
-                    className="text-gray-300 hover:text-sakina-gold transition-colors duration-300 text-sm"
+                    className="text-gray-300 hover:text-sakina-red-light transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </a>
@@ -71,11 +68,11 @@ const Footer = () => {
 
           {/* Programmes */}
           <div className="space-y-4">
-            <h2 className="font-semibold text-lg text-sakina-gold">Nos Programmes</h2>
+            <h2 className="font-semibold text-lg text-sakina-red-light">Nos Programmes</h2>
             <ul className="space-y-2">
               {programs.map((program) => (
                 <li key={program}>
-                  <a href="/programmes" className="text-gray-300 hover:text-sakina-gold transition-colors duration-300 text-sm">
+                  <a href="/programmes" className="text-gray-300 hover:text-sakina-red-light transition-colors duration-300 text-sm">
                     {program}
                   </a>
                 </li>
@@ -85,10 +82,10 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h2 className="font-semibold text-lg text-sakina-gold">Contact</h2>
+            <h2 className="font-semibold text-lg text-sakina-red-light">Contact</h2>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin size={16} className="text-sakina-gold mt-1 flex-shrink-0" aria-hidden="true" />
+                <MapPin size={16} className="text-sakina-red-light mt-1 flex-shrink-0" aria-hidden="true" />
                 <p className="text-gray-300 text-sm">
                   {college.address.street}<br />
                   {college.address.district}<br />
@@ -96,20 +93,20 @@ const Footer = () => {
                 </p>
               </div>
               <div className="flex items-start space-x-3">
-                <Phone size={16} className="text-sakina-gold mt-1 flex-shrink-0" aria-hidden="true" />
+                <Phone size={16} className="text-sakina-red-light mt-1 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm flex flex-col">
                   {[college.phones.main, college.phones.secondary].map((phone) => (
-                    <a key={phone} href={telHref(phone)} className="text-gray-300 hover:text-sakina-gold">
+                    <a key={phone} href={telHref(phone)} className="text-gray-300 hover:text-sakina-red-light">
                       {phone}
                     </a>
                   ))}
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <Mail size={16} className="text-sakina-gold mt-1 flex-shrink-0" aria-hidden="true" />
+                <Mail size={16} className="text-sakina-red-light mt-1 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm flex flex-col">
                   {[college.emails.main, college.emails.contact].map((email) => (
-                    <a key={email} href={`mailto:${email}`} className="text-gray-300 hover:text-sakina-gold break-all">
+                    <a key={email} href={`mailto:${email}`} className="text-gray-300 hover:text-sakina-red-light break-all">
                       {email}
                     </a>
                   ))}

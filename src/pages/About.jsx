@@ -7,22 +7,22 @@ import CtaSection from '../components/CtaSection';
 const About = () => {
   const values = [
     {
-      icon: <Heart className="w-8 h-8 text-sakina-gold" />,
+      icon: <Heart className="w-8 h-8 text-sakina-red" />,
       title: "Excellence",
       description: "Nous visons l'excellence dans tous les aspects de l'éducation, académique et morale."
     },
     {
-      icon: <Target className="w-8 h-8 text-sakina-gold" />,
+      icon: <Target className="w-8 h-8 text-sakina-red" />,
       title: "Intégrité",
       description: "Nous cultivons l'honnêteté, la sincérité et la droiture selon les enseignements islamiques."
     },
     {
-      icon: <Users className="w-8 h-8 text-sakina-gold" />,
+      icon: <Users className="w-8 h-8 text-sakina-red" />,
       title: "Communauté",
       description: "Nous créons un environnement familial où chaque élève se sent valorisé et soutenu."
     },
     {
-      icon: <BookOpen className="w-8 h-8 text-sakina-gold" />,
+      icon: <BookOpen className="w-8 h-8 text-sakina-red" />,
       title: "Savoir",
       description: "Nous encourageons la quête du savoir comme un devoir religieux et civique."
     }
@@ -72,7 +72,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-sakina-blue">
+              <h2 className="text-4xl font-bold text-sakina-green">
                 Notre Histoire
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -88,11 +88,11 @@ const About = () => {
                 approfondi de la langue arabe et des sciences islamiques.
               </p>
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-sakina-gold rounded-full flex items-center justify-center">
-                  <Award className="w-8 h-8 text-sakina-blue" />
+                <div className="w-16 h-16 bg-sakina-red rounded-full flex items-center justify-center">
+                  <Award className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sakina-blue text-lg">15 années d'excellence</p>
+                  <p className="font-semibold text-sakina-green text-lg">15 années d'excellence</p>
                   <p className="text-gray-600">Au service de l'éducation islamique</p>
                 </div>
               </div>
@@ -116,10 +116,10 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="w-16 h-16 bg-sakina-blue rounded-full flex items-center justify-center mb-6">
-                <Target className="w-8 h-8 text-sakina-gold" />
+              <div className="w-16 h-16 bg-sakina-green rounded-full flex items-center justify-center mb-6">
+                <Target className="w-8 h-8 text-sakina-red-light" />
               </div>
-              <h3 className="text-2xl font-bold text-sakina-blue mb-4">Notre Mission</h3>
+              <h3 className="text-2xl font-bold text-sakina-green mb-4">Notre Mission</h3>
               <p className="text-gray-600 leading-relaxed">
                 Sakina Collège est né à l'initiative d'hommes et de femmes voulant participer 
                 activement au développement de leur pays par le biais de la formation de jeunes 
@@ -129,10 +129,10 @@ const About = () => {
             </div>
             
             <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="w-16 h-16 bg-sakina-gold rounded-full flex items-center justify-center mb-6">
-                <Star className="w-8 h-8 text-sakina-blue" />
+              <div className="w-16 h-16 bg-sakina-red rounded-full flex items-center justify-center mb-6">
+                <Star className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-sakina-blue mb-4">Notre Vision</h3>
+              <h3 className="text-2xl font-bold text-sakina-green mb-4">Notre Vision</h3>
               <p className="text-gray-600 leading-relaxed">
                 Être l'établissement de référence en matière d'éducation islamique au Sénégal, 
                 reconnu pour son excellence pédagogique, ses valeurs morales et sa contribution 
@@ -147,7 +147,7 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Nos Valeurs Fondamentales
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -165,7 +165,7 @@ const About = () => {
                 <div className="mb-6 group-hover:scale-110 transition-transform duration-300 flex justify-center">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h3 className="text-xl font-semibold text-sakina-green mb-4">
                   {value.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -192,7 +192,7 @@ const About = () => {
               />
             </div>
             <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-sakina-blue">
+              <h2 className="text-4xl font-bold text-sakina-green">
                 Nos Objectifs Pédagogiques
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -203,7 +203,7 @@ const About = () => {
               <div className="space-y-4">
                 {objectives.map((objective, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red flex-shrink-0 mt-1" />
                     <span className="text-gray-700">{objective}</span>
                   </div>
                 ))}
@@ -217,7 +217,7 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Notre Parcours
             </h2>
             <p className="text-xl text-gray-600">
@@ -227,7 +227,7 @@ const About = () => {
           
           {/* Mobile : ligne à gauche, cartes empilées. Desktop : cartes alternées de part et d'autre. */}
           <div className="relative">
-            <div className="absolute left-2 md:left-1/2 md:-translate-x-1/2 w-1 h-full bg-sakina-gold" aria-hidden="true"></div>
+            <div className="absolute left-2 md:left-1/2 md:-translate-x-1/2 w-1 h-full bg-sakina-red" aria-hidden="true"></div>
 
             <ol className="space-y-12">
               {timeline.map((item, index) => (
@@ -237,10 +237,10 @@ const About = () => {
                 >
                   <div className={`w-full pl-10 md:w-1/2 ${index % 2 === 0 ? 'md:pl-0 md:pr-8 md:text-right' : 'md:pl-8'}`}>
                     <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="text-2xl font-bold text-sakina-gold-dark mb-2">
+                      <div className="text-2xl font-bold text-sakina-red mb-2">
                         {item.year}
                       </div>
-                      <h3 className="text-xl font-semibold text-sakina-blue mb-3">
+                      <h3 className="text-xl font-semibold text-sakina-green mb-3">
                         {item.title}
                       </h3>
                       <p className="text-gray-600">
@@ -250,7 +250,7 @@ const About = () => {
                   </div>
 
                   <div className="absolute left-0.5 md:static z-10" aria-hidden="true">
-                    <div className="w-4 h-4 bg-sakina-gold rounded-full border-4 border-white shadow-lg"></div>
+                    <div className="w-4 h-4 bg-sakina-red rounded-full border-4 border-white shadow-lg"></div>
                   </div>
 
                   <div className="hidden md:block md:w-1/2"></div>

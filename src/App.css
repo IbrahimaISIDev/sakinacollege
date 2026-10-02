@@ -3,14 +3,13 @@
 /* Charte graphique Sakina : génère text-*, bg-*, border-*, from-*, ring-*, etc. */
 @theme {
   --font-poppins: 'Poppins', sans-serif;
-  --color-sakina-blue: #1e3a8a;
-  --color-sakina-gold: #facc15;
-  /* Doré foncé pour le texte sur fond clair (contraste AA, le doré clair est illisible sur blanc) */
-  --color-sakina-gold-dark: #a16207;
-  --color-sakina-green: #16a34a;
-  --color-sakina-red: #dc2626;
-  --color-sakina-green-light: #22c55e;
-  --color-sakina-red-light: #ef4444;
+  /* Couleurs du logo officiel */
+  --color-sakina-green: #14461e;
+  --color-sakina-green-light: #1f6b30;
+  --color-sakina-red: #c02424;
+  --color-sakina-red-dark: #9b1c1c;
+  /* Rouge clair pour les accents sur fond vert (le rouge du logo y serait illisible) */
+  --color-sakina-red-light: #f8b4b4;
 }
 
 @layer base {

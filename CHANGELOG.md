@@ -2,6 +2,12 @@
 
 ## [Non publié]
 
+### Identité visuelle
+- Intégration du logo officiel dans la barre de navigation et le pied de page ; nouveau favicon et icône Apple tirés du « S » du logo.
+- Charte graphique alignée sur le logo : vert `#14461e` (remplace le bleu nuit) et rouge `#c02424` (remplace le doré), avec un rouge clair pour les accents sur fond vert. Contrastes conformes WCAG AA.
+- Slogan officiel « Le jardin du savoir et de la vertu » affiché sous le logo.
+
+
 ### SEO et URL
 - Vraies URL (`/a-propos`, `/programmes`, `/actualites/2023`…) à la place du routage par hash ; les anciennes adresses `#page` sont redirigées.
 - Pré-rendu HTML de chaque page au build : contenu indexable sans JavaScript, titre et description propres à chaque page.
