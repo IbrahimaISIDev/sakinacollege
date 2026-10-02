@@ -42,6 +42,17 @@ export const college = {
   ],
 };
 
+// Groupe scolaire auquel appartient le collège (présentation officielle, page Facebook de l'école)
+export const schoolGroup = {
+  name: 'Groupe scolaire Sakina',
+  intro:
+    "Le groupe scolaire Sakina est né de la volonté d'hommes et de femmes déterminés à apporter une importante contribution au système éducatif du Sénégal.",
+  schools: [
+    { name: 'Collège Sakina', levels: '6ème, 5ème, 4ème, 3ème', description: 'Enseignement moyen' },
+    { name: 'Boushra School', levels: 'Maternelle, CI, CP', description: 'Préscolaire et début du primaire' },
+  ],
+};
+
 export const allPhones = [
   college.phones.main,
   college.phones.landline,

@@ -1,4 +1,4 @@
-import { college } from './college';
+import { college, schoolGroup } from './college';
 import { articlePath, findArticle, isArchiveYear } from './news';
 
 // Adresse publique du site, sans "/" final (ex. https://www.sakinacollege.sn).
@@ -71,7 +71,8 @@ export function getSchoolJsonLd() {
       addressCountry: 'SN'
     },
     openingHours: ['Mo-Fr 07:30-16:30', 'Sa 08:00-12:00'],
-    sameAs: [college.social.facebook]
+    sameAs: [college.social.facebook],
+    parentOrganization: { '@type': 'EducationalOrganization', name: schoolGroup.name }
   };
 }
 

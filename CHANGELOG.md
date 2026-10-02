@@ -3,6 +3,8 @@
 ## [Non publié]
 
 ### Contenus de l'établissement
+- Page « À propos » : section « Groupe scolaire Sakina » reprenant la présentation officielle (page Facebook de l'école) et ses deux établissements, le Collège Sakina (6ème à 3ème) et Boushra School (maternelle, CI, CP) ; appartenance au groupe ajoutée aux données structurées.
+- Mot de la directrice publié (texte validé le 2026-10-02). En attendant son nom, la signature indique « Directrice du Collège Sakina » et le logo remplace la photo. Brouillon d'origine, avec une version courte, dans `docs/brouillons/`.
 - Page « À propos » : sections « Le mot de la directrice » et « Notre équipe pédagogique » (photo ou initiales, nom, rôle).
 - Page « Inscriptions » : section « Documents utiles » avec la liste des fournitures de chaque classe et le règlement intérieur à télécharger ; lien direct depuis le pied de page.
 - Contenus regroupés dans `src/data/content.js` : tant qu'une rubrique n'est pas fournie par l'école, le site affiche « Bientôt disponible » (aucun contenu fictif publié).
