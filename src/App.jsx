@@ -8,7 +8,8 @@ import Programs from './pages/Programs';
 import Admissions from './pages/Admissions';
 import News from './pages/News';
 import Contact from './pages/Contact';
-import { useHashRoute } from './hooks/useHashRoute';
+import NotFound from './pages/NotFound';
+import { useRoute, interceptLinkClicks } from './router';
 import './App.css';
 
 const PAGES = {
@@ -18,11 +19,18 @@ const PAGES = {
   inscriptions: Admissions,
   actualites: News,
   contact: Contact,
+  introuvable: NotFound,
 };
 
-function App() {
-  const { page, param } = useHashRoute();
+// url : chemin à rendre lors du pré-rendu (ignoré dans le navigateur)
+function App({ url }) {
+  const { page, param } = useRoute(url);
   const Page = PAGES[page];
+
+  useEffect(() => {
+    document.addEventListener('click', interceptLinkClicks);
+    return () => document.removeEventListener('click', interceptLinkClicks);
+  }, []);
 
   // Remonter en haut à chaque changement de page ou de sous-page
   useEffect(() => {

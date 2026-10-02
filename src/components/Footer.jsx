@@ -59,7 +59,7 @@ const Footer = () => {
               {navItems.map((link) => (
                 <li key={link.page}>
                   <a
-                    href={`#${link.page}`}
+                    href={link.path}
                     className="text-gray-300 hover:text-sakina-gold transition-colors duration-300 text-sm"
                   >
                     {link.name}
@@ -75,7 +75,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {programs.map((program) => (
                 <li key={program}>
-                  <a href="#programmes" className="text-gray-300 hover:text-sakina-gold transition-colors duration-300 text-sm">
+                  <a href="/programmes" className="text-gray-300 hover:text-sakina-gold transition-colors duration-300 text-sm">
                     {program}
                   </a>
                 </li>

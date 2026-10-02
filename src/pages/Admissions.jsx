@@ -374,7 +374,7 @@ const Admissions = () => {
       <CtaSection
         title="Prêt à inscrire votre enfant ?"
         text="Rejoignez notre communauté éducative et offrez à votre enfant les meilleures chances de réussite."
-        primary={{ label: 'Prendre rendez-vous', href: '#contact' }}
+        primary={{ label: 'Prendre rendez-vous', href: '/contact' }}
         secondary={{
           label: 'Appeler maintenant',
           href: telHref(college.phones.main),

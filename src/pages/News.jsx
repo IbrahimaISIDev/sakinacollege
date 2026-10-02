@@ -112,7 +112,7 @@ const ArchiveYear = ({ year }) => {
         subtitle={articles.length > 0 ? `Revivez les moments forts de l'année ${year}` : `Aucune archive disponible pour ${year}`}
       >
         <a
-          href="#actualites"
+          href="/actualites"
           className="inline-block mb-4 bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-colors duration-300"
         >
           ← Retour aux actualités
@@ -313,7 +313,7 @@ const News = ({ param: archiveYear }) => {
                   </div>
 
                   <a
-                    href={`#actualites/${year}`}
+                    href={`/actualites/${year}`}
                     className="block w-full text-center bg-sakina-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 group-hover:shadow-md"
                   >
                     Consulter {year}

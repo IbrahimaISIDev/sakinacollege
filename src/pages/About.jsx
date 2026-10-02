@@ -264,8 +264,8 @@ const About = () => {
       <CtaSection
         title="Rejoignez notre famille éducative"
         text="Découvrez comment nous pouvons accompagner votre enfant vers l'excellence académique et spirituelle."
-        primary={{ label: 'Découvrir nos programmes', href: '#programmes' }}
-        secondary={{ label: 'Nous rencontrer', href: '#contact' }}
+        primary={{ label: 'Découvrir nos programmes', href: '/programmes' }}
+        secondary={{ label: 'Nous rencontrer', href: '/contact' }}
       />
     </div>
   );

@@ -46,10 +46,13 @@ export const allPhones = [
 ];
 
 export const navItems = [
-  { name: 'Accueil', page: 'accueil' },
-  { name: 'À propos', page: 'apropos' },
-  { name: 'Programmes', page: 'programmes' },
-  { name: 'Inscriptions', page: 'inscriptions' },
-  { name: 'Actualités', page: 'actualites' },
-  { name: 'Contact', page: 'contact' },
+  { name: 'Accueil', page: 'accueil', path: '/' },
+  { name: 'À propos', page: 'apropos', path: '/a-propos' },
+  { name: 'Programmes', page: 'programmes', path: '/programmes' },
+  { name: 'Inscriptions', page: 'inscriptions', path: '/inscriptions' },
+  { name: 'Actualités', page: 'actualites', path: '/actualites' },
+  { name: 'Contact', page: 'contact', path: '/contact' },
 ];
+
+// Chemin d'une page à partir de son identifiant : paths.contact -> '/contact'
+export const paths = Object.fromEntries(navItems.map((item) => [item.page, item.path]));

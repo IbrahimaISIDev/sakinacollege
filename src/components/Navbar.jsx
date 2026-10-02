@@ -31,7 +31,7 @@ const Navbar = ({ currentPage }) => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
-            <a href="#accueil" className="flex items-center space-x-3" onClick={closeMenu}>
+            <a href="/" className="flex items-center space-x-3" onClick={closeMenu}>
               <div className="w-12 h-12 bg-sakina-blue rounded-full flex items-center justify-center" aria-hidden="true">
                 <span className="text-sakina-gold font-bold text-xl">S</span>
               </div>
@@ -48,7 +48,7 @@ const Navbar = ({ currentPage }) => {
                 return (
                   <a
                     key={item.page}
-                    href={`#${item.page}`}
+                    href={item.path}
                     aria-current={isActive ? 'page' : undefined}
                     className={`font-medium transition-all duration-300 relative group px-3 py-2 rounded-lg ${
                       isActive
@@ -71,7 +71,7 @@ const Navbar = ({ currentPage }) => {
             {/* Bouton CTA desktop */}
             <div className="hidden md:block">
               <a
-                href="#inscriptions"
+                href="/inscriptions"
                 className="bg-sakina-gold text-sakina-blue px-6 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-colors duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
               >
                 S'inscrire
@@ -105,7 +105,7 @@ const Navbar = ({ currentPage }) => {
               return (
                 <a
                   key={item.page}
-                  href={`#${item.page}`}
+                  href={item.path}
                   aria-current={isActive ? 'page' : undefined}
                   className={`block py-3 px-4 font-medium transition-all duration-300 border-b border-gray-100 last:border-b-0 rounded-lg mx-2 ${
                     isActive
@@ -120,7 +120,7 @@ const Navbar = ({ currentPage }) => {
             })}
             <div className="pt-4">
               <a
-                href="#inscriptions"
+                href="/inscriptions"
                 className="block w-full text-center bg-sakina-gold text-sakina-blue py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors duration-300"
                 onClick={closeMenu}
               >

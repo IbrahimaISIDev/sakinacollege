@@ -76,14 +76,14 @@ const Home = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="#inscriptions"
+                    href="/inscriptions"
                     className="bg-sakina-gold text-sakina-blue px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group"
                   >
                     S'inscrire maintenant
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                   <a
-                    href="#apropos"
+                    href="/a-propos"
                     className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-blue transition-all duration-300 flex items-center justify-center"
                   >
                     En savoir plus
@@ -206,7 +206,7 @@ const Home = () => {
               </div>
               
               <a
-                href="#apropos"
+                href="/a-propos"
                 className="inline-flex items-center text-sakina-blue font-semibold hover:text-sakina-gold transition-colors duration-300 group"
               >
                 En savoir plus sur notre histoire
@@ -256,8 +256,8 @@ const Home = () => {
       <CtaSection
         title="Prêt à rejoindre notre communauté ?"
         text="Offrez à votre enfant une éducation d'excellence dans un environnement respectueux des valeurs islamiques."
-        primary={{ label: "Commencer l'inscription", href: '#inscriptions' }}
-        secondary={{ label: 'Nous contacter', href: '#contact', icon: <Phone className="w-5 h-5 mr-2" aria-hidden="true" /> }}
+        primary={{ label: "Commencer l'inscription", href: '/inscriptions' }}
+        secondary={{ label: 'Nous contacter', href: '/contact', icon: <Phone className="w-5 h-5 mr-2" aria-hidden="true" /> }}
       />
     </div>
   );

@@ -471,10 +471,10 @@ const Programs = () => {
         text="Découvrez comment nous pouvons accompagner votre enfant vers la réussite académique et spirituelle."
         primary={{
           label: "Commencer l'inscription",
-          href: '#inscriptions',
+          href: '/inscriptions',
           iconAfter: <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />,
         }}
-        secondary={{ label: "Demander plus d'informations", href: '#contact' }}
+        secondary={{ label: "Demander plus d'informations", href: '/contact' }}
       />
     </div>
   );
