@@ -1,6 +1,6 @@
 import { Heart, Target, Users, BookOpen, Award, Star, CheckCircle } from 'lucide-react';
-import studentsGroupImage from '../assets/images/students-group.jpg';
-import islamicEducationImage from '../assets/images/islamic-education.jpg';
+import studentsGroupImage from '../assets/images/students-group.webp';
+import islamicEducationImage from '../assets/images/islamic-education.webp';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 
@@ -102,8 +102,8 @@ const About = () => {
                 src={studentsGroupImage}
                 alt="Groupe d'étudiants du Collège Sakina"
                 loading="lazy"
-                width="2940"
-                height="1960"
+                width="1400"
+                height="933"
                 className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>
@@ -186,8 +186,8 @@ const About = () => {
                 src={islamicEducationImage}
                 alt="Éducation islamique"
                 loading="lazy"
-                width="2121"
-                height="1414"
+                width="1400"
+                height="933"
                 className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>

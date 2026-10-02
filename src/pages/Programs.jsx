@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BookOpen, Clock, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
-import arabicCalligraphyImage from '../assets/images/arabic-calligraphy.jpg';
+import arabicCalligraphyImage from '../assets/images/arabic-calligraphy.webp';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 

@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen, Users, Award, Star, CheckCircle, Phone } from 'lucide-react';
-import heroImage from '../assets/images/hero-image.jpg';
-import studentsImage from '../assets/images/students-classroom.jpg';
-import islamicEducationImage from '../assets/images/islamic-education.jpg';
+import heroImage from '../assets/images/hero-image.webp';
+import studentsImage from '../assets/images/students-classroom.webp';
+import islamicEducationImage from '../assets/images/islamic-education.webp';
 import CtaSection from '../components/CtaSection';
 
 const Home = () => {
@@ -177,8 +177,8 @@ const Home = () => {
                 src={islamicEducationImage}
                 alt="Éducation islamique au Collège Sakina"
                 loading="lazy"
-                width="2121"
-                height="1414"
+                width="1400"
+                height="933"
                 className="rounded-2xl shadow-lg w-full h-auto"
               />
             </div>

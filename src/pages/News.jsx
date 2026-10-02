@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Calendar, User, ArrowRight, Search, Facebook, MessageCircle } from 'lucide-react';
-import studentsImage from '../assets/images/students-classroom.jpg';
-import islamicEducationImage from '../assets/images/islamic-education.jpg';
-import studentsGroupImage from '../assets/images/students-group.jpg';
+import studentsImage from '../assets/images/students-classroom.webp';
+import islamicEducationImage from '../assets/images/islamic-education.webp';
+import studentsGroupImage from '../assets/images/students-group.webp';
 import PageHero from '../components/PageHero';
 import { college } from '../data/college';
 
