@@ -2,6 +2,21 @@
 
 ## [Non publié]
 
+### SEO et URL
+- Vraies URL (`/a-propos`, `/programmes`, `/actualites/2023`…) à la place du routage par hash ; les anciennes adresses `#page` sont redirigées.
+- Pré-rendu HTML de chaque page au build : contenu indexable sans JavaScript, titre et description propres à chaque page.
+- Open Graph, données structurées schema.org (School), robots.txt, et avec `VITE_SITE_URL` : URL canoniques et sitemap.xml.
+- Page 404 dédiée.
+
+### Performance
+- Images converties en WebP et redimensionnées : 1,17 Mo → 220 Ko.
+
+### Ajouté
+- Carte Google Maps intégrée sur la page Contact (sans clé d'API).
+- `.htaccess` pour Apache : page 404, en-têtes de sécurité, cache.
+- Intégration continue GitHub Actions (lint + build).
+
+
 ### Corrigé
 - Charte graphique : les couleurs `sakina-*` sont déclarées dans `@theme` (Tailwind v4 ignorait `tailwind.config.js`). Dégradés des en-têtes, survols, focus et état actif du menu fonctionnent à nouveau.
 - Police Poppins réellement chargée (lien dans `index.html`).
