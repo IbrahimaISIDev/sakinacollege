@@ -1,0 +1,19 @@
+# Configuration Apache (Hostinger, cPanel…). Ignoré par Netlify, Vercel et GitHub Pages.
+
+# Page d'erreur pour les adresses inconnues
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache long pour les fichiers versionnés par Vite (leur nom change à chaque modification)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  <FilesMatch "^.*-[A-Za-z0-9_-]{8}\.(js|css|webp|jpg|png|svg|woff2)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+</IfModule>
