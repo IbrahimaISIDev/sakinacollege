@@ -3,6 +3,8 @@ import studentsGroupImage from '../assets/images/students-group.webp';
 import islamicEducationImage from '../assets/images/islamic-education.webp';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
+import DirectorMessage from '../components/DirectorMessage';
+import TeamSection from '../components/TeamSection';
 
 const About = () => {
   const values = [
@@ -142,6 +144,10 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <DirectorMessage />
+
+      <TeamSection />
 
       {/* Section Valeurs */}
       <section className="py-20 bg-white">

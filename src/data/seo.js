@@ -14,7 +14,7 @@ const PAGE_META = {
   },
   apropos: {
     title: `À propos${SUFFIX}`,
-    description: "Histoire, mission, vision et valeurs du Collège Privé Musulman Sakina, établissement d'enseignement privé à Dakar."
+    description: "Histoire, mission, vision, mot de la directrice et équipe pédagogique du Collège Privé Musulman Sakina, établissement d'enseignement privé à Dakar."
   },
   programmes: {
     title: `Programmes de la 6ème à la 3ème${SUFFIX}`,
