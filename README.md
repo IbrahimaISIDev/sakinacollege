@@ -1,6 +1,6 @@
 # Collège Privé Musulman Sakina — Site web
 
-Site vitrine du Collège Privé Musulman Sakina (HLM2, Dakar, Sénégal) : présentation de l'établissement, programmes, inscriptions, actualités et contact.
+Site vitrine du Collège Privé Musulman Sakina (HLM2, Dakar, Sénégal), membre du groupe scolaire Sakina avec Boushra School (maternelle, CI, CP) : présentation de l'établissement, programmes, inscriptions, actualités et contact.
 
 Application **React 19** stylée avec **Tailwind CSS v4** et construite avec **Vite 6**. Chaque page est **pré-rendue en HTML** au build (contenu lisible par les moteurs de recherche), puis devient interactive dans le navigateur. Aucun backend.
 
@@ -26,6 +26,7 @@ VITE_SITE_URL=https://www.exemple.sn pnpm build
 
 ```
 index.html                  # gabarit HTML (meta, icônes)
+docs/brouillons/            # brouillons de textes à faire valider par l'école (non publiés)
 scripts/prerender.js        # pré-rendu : un HTML par page, 404.html, robots.txt, sitemap.xml
 .github/workflows/ci.yml    # CI : lint + build à chaque push sur main et chaque PR
 public/
@@ -51,6 +52,7 @@ src/
     ArticleCard.jsx         # carte d'actualité (lien vers la page de l'article)
     AnimatedNumber.jsx      # chiffre animé à l'apparition (chiffres clés de l'accueil)
     WhatsAppButton.jsx      # bouton WhatsApp flottant
+    SchoolGroupSection.jsx  # groupe scolaire : Collège Sakina et Boushra School (page À propos)
     DirectorMessage.jsx     # mot de la directrice (page À propos)
     TeamSection.jsx         # équipe pédagogique (page À propos)
     UsefulDocuments.jsx     # fournitures et règlement intérieur (page Inscriptions)
@@ -106,7 +108,7 @@ Tout se trouve dans **`src/data/content.js`**. Tant qu'une rubrique est vide, le
 
 | Rubrique | Où elle s'affiche | Ce qu'il faut renseigner |
 |---|---|---|
-| Mot de la directrice | À propos | `director` : nom, photo, paragraphes du message |
+| Mot de la directrice | À propos | `director` : texte publié ; **reste à renseigner le nom et la photo** (sans nom, la signature indique « Directrice du Collège Sakina » et le logo remplace la photo) |
 | Équipe pédagogique | À propos | `team` : une ligne par personne (nom, rôle, photo) |
 | Listes de fournitures | Inscriptions › Documents utiles | `schoolYear` et le fichier PDF de chaque classe dans `supplyLists` |
 | Règlement intérieur | Inscriptions › Documents utiles | `schoolRules` : fichier PDF et date de la version |
@@ -117,7 +119,7 @@ Tout se trouve dans **`src/data/content.js`**. Tant qu'une rubrique est vide, le
 
 ### Autres contenus
 
-- **Coordonnées** (téléphones, e-mails, adresse, réseaux) : uniquement dans `src/data/college.js`.
+- **Coordonnées** (téléphones, e-mails, adresse, réseaux) et **présentation du groupe scolaire** : uniquement dans `src/data/college.js`.
 - **Actualités** : `src/data/news.js`. Chaque article, et chaque année d'archive, obtient automatiquement sa page pré-rendue. L'adresse d'un article est tirée de son titre : **modifier le titre change l'adresse**, et les liens déjà partagés ne fonctionneront plus.
 - **Titres et descriptions pour Google** : `src/data/seo.js`.
 - **Carte** : `mapQuery` dans `src/data/college.js` (idéalement les coordonnées GPS exactes du collège).
