@@ -1,9 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.jsx';
-import { parsePath, redirectLegacyHash } from './router';
+import { initRouter, parsePath, redirectLegacyHash } from './router';
 
 redirectLegacyHash();
+initRouter();
 
 const root = document.getElementById('root');
 

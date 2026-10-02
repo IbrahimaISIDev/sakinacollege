@@ -1,7 +1,9 @@
 import { useSyncExternalStore } from 'react';
+import { flushSync } from 'react-dom';
 import { navItems, paths } from './data/college';
 
 const NAVIGATE_EVENT = 'sakina:navigate';
+const SCROLL_STORAGE_KEY = 'sakina:scroll';
 
 // "/actualites/2023/" -> { page: 'actualites', param: '2023' } ; chemin inconnu -> page 'introuvable'
 export function parsePath(pathname) {
@@ -16,12 +18,8 @@ export function parsePath(pathname) {
 }
 
 const subscribe = (callback) => {
-  window.addEventListener('popstate', callback);
   window.addEventListener(NAVIGATE_EVENT, callback);
-  return () => {
-    window.removeEventListener('popstate', callback);
-    window.removeEventListener(NAVIGATE_EVENT, callback);
-  };
+  return () => window.removeEventListener(NAVIGATE_EVENT, callback);
 };
 
 // serverPath : chemin utilisé lors du pré-rendu, où window n'existe pas.
@@ -33,9 +31,88 @@ export function useRoute(serverPath = '/') {
   return parsePath(pathname);
 }
 
+/* ---------- Position de défilement par entrée d'historique ---------- */
+
+// Chaque entrée d'historique reçoit une clé ; la position de défilement y est associée,
+// pour la restaurer avec Précédent/Suivant (comme sur un site à pages classiques).
+// La position est relevée au moment où l'on quitte une page (clic, Précédent/Suivant, fermeture
+// ou rechargement de l'onglet) : avec scrollRestoration = 'manual', elle n'a pas encore bougé.
+let scrollPositions = {};
+let activeKey = null; // entrée d'historique actuellement affichée
+
+const currentKey = () => window.history.state?.key;
+const newKey = () => Math.random().toString(36).slice(2, 10);
+
+function saveScrollPosition() {
+  if (!activeKey) return;
+  scrollPositions[activeKey] = window.scrollY;
+  try {
+    sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify(scrollPositions));
+  } catch {
+    // stockage indisponible (navigation privée) : les positions restent seulement en mémoire
+  }
+}
+
+/* ---------- Transition entre pages ---------- */
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Met à jour la page (de façon synchrone, pour que la transition capture le nouvel état) puis
+// positionne le défilement. Fondu léger via la View Transitions API quand elle est disponible.
+function renderNavigation(scrollTop) {
+  let done = false;
+  const update = () => {
+    if (done) return;
+    done = true;
+    flushSync(() => window.dispatchEvent(new Event(NAVIGATE_EVENT)));
+    window.scrollTo({ top: scrollTop, behavior: 'instant' });
+  };
+
+  if (!document.startViewTransition || prefersReducedMotion() || document.visibilityState !== 'visible') {
+    update();
+    return;
+  }
+  const transition = document.startViewTransition(update);
+  // Si le navigateur abandonne la transition (onglet masqué, délai dépassé…), la page doit
+  // quand même changer : on exécute la mise à jour nous-mêmes, une seule fois.
+  transition.updateCallbackDone.catch(update);
+  transition.ready.catch(() => {});
+  transition.finished.catch(() => {});
+}
+
 export function navigate(to) {
-  window.history.pushState(null, '', to);
-  window.dispatchEvent(new Event(NAVIGATE_EVENT));
+  saveScrollPosition();
+  activeKey = newKey();
+  window.history.pushState({ key: activeKey }, '', to);
+  renderNavigation(0);
+}
+
+function handlePopState() {
+  saveScrollPosition(); // position de la page que l'on quitte
+  activeKey = currentKey();
+  renderNavigation(scrollPositions[activeKey] ?? 0);
+}
+
+// À appeler une fois au démarrage dans le navigateur
+export function initRouter() {
+  try {
+    scrollPositions = JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY)) || {};
+  } catch {
+    scrollPositions = {};
+  }
+  window.history.scrollRestoration = 'manual';
+  if (!currentKey()) {
+    window.history.replaceState({ key: newKey() }, '');
+  }
+  activeKey = currentKey();
+  window.addEventListener('popstate', handlePopState);
+  window.addEventListener('pagehide', saveScrollPosition);
+
+  // Rechargement de la page : retrouver la position (le HTML pré-rendu a déjà sa hauteur finale)
+  const saved = scrollPositions[activeKey];
+  if (saved) {
+    requestAnimationFrame(() => window.scrollTo({ top: saved, behavior: 'instant' }));
+  }
 }
 
 // Intercepte les clics sur les liens internes pour naviguer sans recharger la page

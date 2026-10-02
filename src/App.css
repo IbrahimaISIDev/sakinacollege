@@ -31,3 +31,14 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Fondu entre les pages (View Transitions API, ignoré par les navigateurs qui ne la gèrent pas) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+
+/* Titres rendus focalisables par programme après une navigation : pas de contour visible */
+[tabindex="-1"]:focus {
+  outline: none;
+}
