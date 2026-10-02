@@ -10,6 +10,7 @@ import News from './pages/News';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { useRoute, interceptLinkClicks } from './router';
+import { getPageMeta } from './data/seo';
 import './App.css';
 
 const PAGES = {
@@ -32,9 +33,12 @@ function App({ url }) {
     return () => document.removeEventListener('click', interceptLinkClicks);
   }, []);
 
-  // Remonter en haut à chaque changement de page ou de sous-page
+  // À chaque changement de page : remonter en haut et mettre à jour le titre et la description
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    const { title, description } = getPageMeta(page, param);
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
   }, [page, param]);
 
   return (
