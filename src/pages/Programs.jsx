@@ -115,7 +115,7 @@ const Programs = () => {
     {
       title: 'Études de Versets',
       description: 'Analyse approfondie des versets coraniques et leur interprétation',
-      icon: <Users className="w-8 h-8 text-sakina-gold" />,
+      icon: <Users className="w-8 h-8 text-sakina-red" />,
       details: [
         'Tafsir des versets sélectionnés',
         'Contexte de révélation',
@@ -147,7 +147,7 @@ const Programs = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Programmes par Niveau
             </h2>
             <p className="text-xl text-gray-600">
@@ -173,8 +173,8 @@ const Programs = () => {
                 onClick={() => setActiveTab(level)}
                 className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                   activeTab === level
-                    ? 'bg-sakina-blue text-white shadow-lg'
-                    : 'text-gray-600 hover:text-sakina-blue'
+                    ? 'bg-sakina-green text-white shadow-lg'
+                    : 'text-gray-600 hover:text-sakina-green'
                 }`}
               >
                 {programs[level].title}
@@ -191,7 +191,7 @@ const Programs = () => {
           >
             <div className="space-y-8">
               <div>
-                <h3 className="text-3xl font-bold text-sakina-blue mb-4">
+                <h3 className="text-3xl font-bold text-sakina-green mb-4">
                   {programs[activeTab].title}
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -201,30 +201,30 @@ const Programs = () => {
 
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <Clock className="w-8 h-8 text-sakina-gold mx-auto mb-3" />
-                  <p className="font-semibold text-sakina-blue">Horaires</p>
+                  <Clock className="w-8 h-8 text-sakina-red mx-auto mb-3" />
+                  <p className="font-semibold text-sakina-green">Horaires</p>
                   <p className="text-gray-600">{programs[activeTab].schedule}</p>
                 </div>
                 <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <Users className="w-8 h-8 text-sakina-gold mx-auto mb-3" />
-                  <p className="font-semibold text-sakina-blue">Effectif</p>
+                  <Users className="w-8 h-8 text-sakina-red mx-auto mb-3" />
+                  <p className="font-semibold text-sakina-green">Effectif</p>
                   <p className="text-gray-600">{programs[activeTab].students}</p>
                 </div>
                 <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <BookOpen className="w-8 h-8 text-sakina-gold mx-auto mb-3" />
-                  <p className="font-semibold text-sakina-blue">Matières</p>
+                  <BookOpen className="w-8 h-8 text-sakina-red mx-auto mb-3" />
+                  <p className="font-semibold text-sakina-green">Matières</p>
                   <p className="text-gray-600">{programs[activeTab].subjects.length} matières</p>
                 </div>
               </div>
 
               <div>
-                <h4 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h4 className="text-xl font-semibold text-sakina-green mb-4">
                   Objectifs pédagogiques
                 </h4>
                 <div className="space-y-3">
                   {programs[activeTab].objectives.map((objective, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" />
+                      <CheckCircle className="w-6 h-6 text-sakina-red flex-shrink-0 mt-1" />
                       <span className="text-gray-700">{objective}</span>
                     </div>
                   ))}
@@ -234,14 +234,14 @@ const Programs = () => {
 
             <div className="space-y-6">
               <div className="bg-gray-50 p-6 rounded-2xl">
-                <h4 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h4 className="text-xl font-semibold text-sakina-green mb-4">
                   Matières enseignées
                 </h4>
                 <div className="grid grid-cols-2 gap-3">
                   {programs[activeTab].subjects.map((subject, index) => (
                     <div
                       key={index}
-                      className="bg-white p-3 rounded-lg text-center text-sm font-medium text-gray-700 hover:bg-sakina-blue hover:text-white transition-all duration-300"
+                      className="bg-white p-3 rounded-lg text-center text-sm font-medium text-gray-700 hover:bg-sakina-green hover:text-white transition-all duration-300"
                     >
                       {subject}
                     </div>
@@ -249,13 +249,13 @@ const Programs = () => {
                 </div>
               </div>
 
-              <div className="bg-sakina-blue text-white p-6 rounded-2xl">
+              <div className="bg-sakina-green text-white p-6 rounded-2xl">
                 <h4 className="text-xl font-semibold mb-4">
                   Taux de réussite
                 </h4>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-sakina-gold mb-2">95%</div>
-                  <p className="text-blue-200">de nos élèves réussissent le BFEM</p>
+                  <div className="text-4xl font-bold text-sakina-red-light mb-2">95%</div>
+                  <p className="text-green-100">de nos élèves réussissent le BFEM</p>
                 </div>
               </div>
             </div>
@@ -267,13 +267,13 @@ const Programs = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Formation Islamique
             </h2>
             <p className="text-xl text-gray-600 mb-6">
               Un programme complet d'éducation spirituelle et morale
             </p>
-            <div className="inline-block bg-sakina-blue text-white px-6 py-2 rounded-full">
+            <div className="inline-block bg-sakina-green text-white px-6 py-2 rounded-full">
               <span className="text-sm font-medium">"Un enseignement de qualité dans le respect des valeurs islamiques"</span>
             </div>
           </div>
@@ -287,7 +287,7 @@ const Programs = () => {
                 <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
                   {program.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h3 className="text-xl font-semibold text-sakina-green mb-4">
                   {program.title}
                 </h3>
                 <p className="text-gray-600 mb-6">
@@ -296,7 +296,7 @@ const Programs = () => {
                 <div className="space-y-2">
                   {program.details.map((detail, idx) => (
                     <div key={idx} className="flex items-start space-x-2">
-                      <CheckCircle className="w-4 h-4 text-sakina-gold flex-shrink-0 mt-1" />
+                      <CheckCircle className="w-4 h-4 text-sakina-red flex-shrink-0 mt-1" />
                       <span className="text-sm text-gray-600">{detail}</span>
                     </div>
                   ))}
@@ -317,7 +317,7 @@ const Programs = () => {
               />
             </div>
             <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-sakina-blue">
+              <h3 className="text-3xl font-bold text-sakina-green">
                 L'excellence dans la tradition islamique
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -333,7 +333,7 @@ const Programs = () => {
                   "Formation aux valeurs morales et éthiques"
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </div>
                 ))}
@@ -344,7 +344,7 @@ const Programs = () => {
           {/* Section Programme Spécial - Intégrée harmonieusement */}
           <div className="mt-20 pt-16 border-t border-gray-200">
             <div className="text-center mb-12">
-              <h3 className="text-2xl font-bold text-sakina-blue mb-4">
+              <h3 className="text-2xl font-bold text-sakina-green mb-4">
                 Activités Complémentaires
               </h3>
               <p className="text-gray-600">
@@ -355,25 +355,25 @@ const Programs = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-3">🥋</div>
-                <h4 className="font-semibold text-sakina-blue mb-2">Taekwondo</h4>
+                <h4 className="font-semibold text-sakina-green mb-2">Taekwondo</h4>
                 <p className="text-sm text-gray-600">Discipline et développement physique</p>
               </div>
               
               <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-3">⚽</div>
-                <h4 className="font-semibold text-sakina-blue mb-2">Football</h4>
+                <h4 className="font-semibold text-sakina-green mb-2">Football</h4>
                 <p className="text-sm text-gray-600">Esprit d'équipe et fair-play</p>
               </div>
               
               <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-3">💻</div>
-                <h4 className="font-semibold text-sakina-blue mb-2">Informatique</h4>
+                <h4 className="font-semibold text-sakina-green mb-2">Informatique</h4>
                 <p className="text-sm text-gray-600">Maîtrise des nouvelles technologies</p>
               </div>
               
               <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-3">🌟</div>
-                <h4 className="font-semibold text-sakina-blue mb-2">Développement Personnel</h4>
+                <h4 className="font-semibold text-sakina-green mb-2">Développement Personnel</h4>
                 <p className="text-sm text-gray-600">Épanouissement selon l'Islam</p>
               </div>
             </div>
@@ -385,7 +385,7 @@ const Programs = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Emploi du Temps Type
             </h2>
             <p className="text-xl text-gray-600">
@@ -398,10 +398,10 @@ const Programs = () => {
               {schedule.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl hover:bg-sakina-blue hover:text-white transition-all duration-300 group"
+                  className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl hover:bg-sakina-green hover:text-white transition-all duration-300 group"
                 >
                   <div className="w-24 text-center">
-                    <Clock className="w-5 h-5 mx-auto mb-1 text-sakina-gold" />
+                    <Clock className="w-5 h-5 mx-auto mb-1 text-sakina-red" />
                     <span className="text-sm font-semibold">{item.time}</span>
                   </div>
                   <div className="flex-1">
@@ -412,35 +412,35 @@ const Programs = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-sakina-blue text-white p-8 rounded-2xl">
+              <div className="bg-sakina-green text-white p-8 rounded-2xl">
                 <h3 className="text-2xl font-bold mb-4">Points forts de notre pédagogie</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red-light flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Classes à effectif réduit</p>
-                      <p className="text-blue-200 text-sm">Maximum 25 élèves par classe pour un suivi personnalisé</p>
+                      <p className="text-green-100 text-sm">Maximum 25 élèves par classe pour un suivi personnalisé</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red-light flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Pédagogie différenciée</p>
-                      <p className="text-blue-200 text-sm">Adaptation aux rythmes et besoins de chaque élève</p>
+                      <p className="text-green-100 text-sm">Adaptation aux rythmes et besoins de chaque élève</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red-light flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Évaluation continue</p>
-                      <p className="text-blue-200 text-sm">Suivi régulier des progrès et accompagnement personnalisé</p>
+                      <p className="text-green-100 text-sm">Suivi régulier des progrès et accompagnement personnalisé</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-gray-50 p-6 rounded-2xl">
-                <h4 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h4 className="text-xl font-semibold text-sakina-green mb-4">
                   Clubs et sorties
                 </h4>
                 <div className="grid grid-cols-2 gap-3">

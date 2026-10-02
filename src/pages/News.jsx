@@ -11,8 +11,8 @@ const CATEGORY_NAMES = {
 };
 
 const CATEGORY_COLORS = {
-  academic: 'bg-blue-100 text-blue-800',
-  events: 'bg-green-100 text-green-800',
+  academic: 'bg-green-100 text-green-800',
+  events: 'bg-red-100 text-red-800',
   achievements: 'bg-yellow-100 text-yellow-800'
 };
 
@@ -70,7 +70,7 @@ const ArticleCard = ({ article, featured = false }) => {
           )}
         </div>
 
-        <h3 className={`font-bold text-sakina-blue mb-3 ${featured ? 'text-xl' : 'text-lg'}`}>
+        <h3 className={`font-bold text-sakina-green mb-3 ${featured ? 'text-xl' : 'text-lg'}`}>
           {article.title}
         </h3>
 
@@ -88,7 +88,7 @@ const ArticleCard = ({ article, featured = false }) => {
           onClick={() => setIsExpanded(!isExpanded)}
           aria-expanded={isExpanded}
           aria-controls={contentId}
-          className="text-sakina-blue font-semibold hover:text-sakina-gold-dark transition-colors duration-300 flex items-center group/btn"
+          className="text-sakina-green font-semibold hover:text-sakina-red transition-colors duration-300 flex items-center group/btn"
         >
           {isExpanded ? 'Réduire' : 'Lire la suite'}
           <span className="sr-only"> : {article.title}</span>
@@ -173,7 +173,7 @@ const News = ({ param: archiveYear }) => {
                 placeholder="Rechercher dans les actualités..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sakina-blue focus:border-transparent focus:outline-none transition-all duration-300"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sakina-green focus:border-transparent focus:outline-none transition-all duration-300"
               />
             </div>
 
@@ -186,7 +186,7 @@ const News = ({ param: archiveYear }) => {
                   aria-pressed={selectedCategory === category.id}
                   className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                     selectedCategory === category.id
-                      ? 'bg-sakina-blue text-white'
+                      ? 'bg-sakina-green text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -202,7 +202,7 @@ const News = ({ param: archiveYear }) => {
       {featuredNews.length > 0 && (
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-sakina-blue mb-12 text-center">
+            <h2 className="text-3xl font-bold text-sakina-green mb-12 text-center">
               À la Une
             </h2>
 
@@ -218,7 +218,7 @@ const News = ({ param: archiveYear }) => {
       {/* Section Toutes les Actualités */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-sakina-blue mb-12 text-center">
+          <h2 className="text-3xl font-bold text-sakina-green mb-12 text-center">
             {selectedCategory === 'all' ? 'Toutes les Actualités' : `Actualités - ${CATEGORY_NAMES[selectedCategory]}`}
           </h2>
 
@@ -239,13 +239,13 @@ const News = ({ param: archiveYear }) => {
       </section>
 
       {/* Section Restez informé (pas de newsletter tant qu'aucun service d'envoi n'est branché) */}
-      <section className="py-20 bg-sakina-blue text-white">
+      <section className="py-20 bg-sakina-green text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">
               Restez informé
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-green-100 mb-8">
               Suivez la vie du Collège Sakina au quotidien sur nos réseaux.
             </p>
 
@@ -254,7 +254,7 @@ const News = ({ param: archiveYear }) => {
                 href={college.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-sakina-gold text-sakina-blue px-6 py-3 rounded-xl font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center justify-center"
+                className="bg-sakina-red text-white px-6 py-3 rounded-xl font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center"
               >
                 <Facebook className="w-5 h-5 mr-2" aria-hidden="true" />
                 Facebook
@@ -263,7 +263,7 @@ const News = ({ param: archiveYear }) => {
                 href={college.social.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-sakina-blue transition-colors duration-300 flex items-center justify-center"
+                className="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-sakina-green transition-colors duration-300 flex items-center justify-center"
               >
                 <MessageCircle className="w-5 h-5 mr-2" aria-hidden="true" />
                 WhatsApp
@@ -277,7 +277,7 @@ const News = ({ param: archiveYear }) => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-2xl font-bold text-sakina-green mb-4">
               Archives des Actualités
             </h2>
             <p className="text-gray-600 mb-8">
@@ -294,7 +294,7 @@ const News = ({ param: archiveYear }) => {
                   className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 group flex flex-col"
                 >
                   <div className="text-center mb-4">
-                    <h3 className="text-3xl font-bold text-sakina-blue mb-2">{year}</h3>
+                    <h3 className="text-3xl font-bold text-sakina-green mb-2">{year}</h3>
                     <p className="text-gray-600">
                       {articles.length} actualité{articles.length > 1 ? 's' : ''}
                     </p>
@@ -305,7 +305,7 @@ const News = ({ param: archiveYear }) => {
                     <ul className="space-y-2">
                       {articles.map((article) => (
                         <li key={article.id} className="flex items-center text-sm text-gray-600">
-                          <span className="w-2 h-2 bg-sakina-gold rounded-full mr-3 flex-shrink-0" aria-hidden="true"></span>
+                          <span className="w-2 h-2 bg-sakina-red rounded-full mr-3 flex-shrink-0" aria-hidden="true"></span>
                           {article.title}
                         </li>
                       ))}
@@ -314,7 +314,7 @@ const News = ({ param: archiveYear }) => {
 
                   <a
                     href={`/actualites/${year}`}
-                    className="block w-full text-center bg-sakina-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 group-hover:shadow-md"
+                    className="block w-full text-center bg-sakina-green text-white py-3 rounded-lg font-semibold hover:bg-sakina-green-light transition-colors duration-300 group-hover:shadow-md"
                   >
                     Consulter {year}
                   </a>

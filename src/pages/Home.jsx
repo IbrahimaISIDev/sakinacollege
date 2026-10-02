@@ -12,7 +12,7 @@ const Home = () => {
       description: "Programme conforme au système éducatif sénégalais avec un encadrement de qualité"
     },
     {
-      icon: <Users className="w-8 h-8 text-sakina-gold" />,
+      icon: <Users className="w-8 h-8 text-sakina-red" />,
       title: "Éducation Islamique",
       description: "Formation morale et spirituelle basée sur les valeurs islamiques authentiques"
     },
@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Section Hero */}
-      <section className="relative bg-gradient-to-br from-sakina-blue via-blue-800 to-sakina-blue min-h-screen flex items-center">
+      <section className="relative bg-gradient-to-br from-sakina-green via-sakina-green-light to-sakina-green min-h-screen flex items-center">
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -61,15 +61,15 @@ const Home = () => {
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   Collège Privé Musulman
-                  <span className="block text-sakina-gold">Sakina</span>
+                  <span className="block text-sakina-red-light">Sakina</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-blue-100">
+                <p className="text-xl md:text-2xl text-green-100">
                   Excellence académique et éducation morale fondée sur l'Islam
                 </p>
               </div>
               
               <div className="space-y-4">
-                <p className="text-lg text-blue-100 leading-relaxed">
+                <p className="text-lg text-green-100 leading-relaxed">
                   Situé au cœur de Dakar, le Collège Sakina offre une éducation de qualité 
                   alliant programme national sénégalais et valeurs islamiques authentiques.
                 </p>
@@ -77,14 +77,14 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href="/inscriptions"
-                    className="bg-sakina-gold text-sakina-blue px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group"
+                    className="bg-sakina-red text-white px-8 py-4 rounded-full font-semibold hover:bg-sakina-red-dark transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group"
                   >
                     S'inscrire maintenant
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                   <a
                     href="/a-propos"
-                    className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-blue transition-all duration-300 flex items-center justify-center"
+                    className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-sakina-green transition-all duration-300 flex items-center justify-center"
                   >
                     En savoir plus
                   </a>
@@ -103,11 +103,11 @@ const Home = () => {
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-sakina-gold rounded-full flex items-center justify-center">
-                      <Award className="w-6 h-6 text-sakina-blue" />
+                    <div className="w-12 h-12 bg-sakina-red rounded-full flex items-center justify-center">
+                      <Award className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-sakina-blue">95% de réussite</p>
+                      <p className="font-semibold text-sakina-green">95% de réussite</p>
                       <p className="text-sm text-gray-600">Taux de réussite au BFEM</p>
                     </div>
                   </div>
@@ -124,7 +124,7 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-sakina-blue mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-sakina-green mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
@@ -138,7 +138,7 @@ const Home = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Pourquoi choisir le Collège Sakina ?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -156,7 +156,7 @@ const Home = () => {
                 <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h3 className="text-xl font-semibold text-sakina-green mb-4">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -183,7 +183,7 @@ const Home = () => {
               />
             </div>
             <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-sakina-blue">
+              <h2 className="text-4xl font-bold text-sakina-green">
                 Une éducation complète et équilibrée
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -194,7 +194,7 @@ const Home = () => {
               <div className="space-y-4">
                 {[
                   { text: "Programme conforme au système éducatif sénégalais", color: "text-sakina-green" },
-                  { text: "Enseignement de la langue arabe et du Coran", color: "text-sakina-gold" },
+                  { text: "Enseignement de la langue arabe et du Coran", color: "text-sakina-red" },
                   { text: "Encadrement par des enseignants qualifiés", color: "text-sakina-red" },
                   { text: "Suivi personnalisé de chaque élève", color: "text-sakina-green" }
                 ].map((item, index) => (
@@ -207,7 +207,7 @@ const Home = () => {
               
               <a
                 href="/a-propos"
-                className="inline-flex items-center text-sakina-blue font-semibold hover:text-sakina-gold transition-colors duration-300 group"
+                className="inline-flex items-center text-sakina-green font-semibold hover:text-sakina-red transition-colors duration-300 group"
               >
                 En savoir plus sur notre histoire
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -221,7 +221,7 @@ const Home = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Ce que disent nos familles
             </h2>
             <p className="text-xl text-gray-600">
@@ -237,14 +237,14 @@ const Home = () => {
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-sakina-gold fill-current" />
+                    <Star key={i} className="w-5 h-5 text-sakina-red fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-600 mb-6 italic leading-relaxed">
                   "{testimonial.content}"
                 </p>
                 <div>
-                  <p className="font-semibold text-sakina-blue">{testimonial.name}</p>
+                  <p className="font-semibold text-sakina-green">{testimonial.name}</p>
                   <p className="text-sm text-gray-500">{testimonial.role}</p>
                 </div>
               </div>

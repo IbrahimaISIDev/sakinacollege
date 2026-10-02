@@ -13,7 +13,7 @@ const NotFound = () => (
             <li key={item.page}>
               <a
                 href={item.path}
-                className="inline-block px-5 py-2 rounded-full bg-gray-100 text-sakina-blue font-medium hover:bg-sakina-blue hover:text-white transition-colors duration-300"
+                className="inline-block px-5 py-2 rounded-full bg-gray-100 text-sakina-green font-medium hover:bg-sakina-green hover:text-white transition-colors duration-300"
               >
                 {item.name}
               </a>

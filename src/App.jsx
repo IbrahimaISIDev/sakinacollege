@@ -49,7 +49,7 @@ function App({ url }) {
           e.preventDefault();
           document.getElementById('contenu')?.focus();
         }}
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-sakina-gold focus:text-sakina-blue focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-sakina-red focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
       >
         Aller au contenu
       </a>

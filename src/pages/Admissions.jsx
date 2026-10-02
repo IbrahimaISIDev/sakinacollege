@@ -106,7 +106,7 @@ const Admissions = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Processus d'Inscription
             </h2>
             <p className="text-xl text-gray-600">
@@ -120,10 +120,10 @@ const Admissions = () => {
                 key={step.number}
                 className="text-center group hover:bg-gray-50 p-6 rounded-2xl transition-all duration-300"
               >
-                <div className="w-16 h-16 bg-sakina-gold text-sakina-blue rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-sakina-red text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-semibold text-sakina-blue mb-4">
+                <h3 className="text-xl font-semibold text-sakina-green mb-4">
                   {step.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -140,7 +140,7 @@ const Admissions = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+              <h2 className="text-4xl font-bold text-sakina-green mb-4">
                 Formulaire de Pré-inscription
               </h2>
               <p className="text-xl text-gray-600">
@@ -192,7 +192,7 @@ const Admissions = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="bg-sakina-blue text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-sakina-green text-white px-8 py-4 rounded-full font-semibold hover:bg-sakina-green-light transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Envoyer la pré-inscription
                 </button>
@@ -207,26 +207,26 @@ const Admissions = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-4xl font-bold text-sakina-blue mb-8">
+              <h2 className="text-4xl font-bold text-sakina-green mb-8">
                 Documents Requis
               </h2>
               <ul className="space-y-4">
                 {requirements.map((requirement) => (
                   <li
                     key={requirement}
-                    className="flex items-start space-x-3 p-4 bg-gray-50 rounded-xl hover:bg-sakina-blue hover:text-white transition-all duration-300 group"
+                    className="flex items-start space-x-3 p-4 bg-gray-50 rounded-xl hover:bg-sakina-green hover:text-white transition-all duration-300 group"
                   >
-                    <CheckCircle className="w-6 h-6 text-sakina-gold flex-shrink-0 mt-1" aria-hidden="true" />
+                    <CheckCircle className="w-6 h-6 text-sakina-red flex-shrink-0 mt-1" aria-hidden="true" />
                     <span className="font-medium">{requirement}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 p-6 bg-sakina-gold/10 border border-sakina-gold rounded-xl">
+              <div className="mt-8 p-6 bg-sakina-red/5 border border-sakina-red rounded-xl">
                 <div className="flex items-start space-x-3">
-                  <AlertCircle className="w-6 h-6 text-sakina-gold-dark flex-shrink-0 mt-1" aria-hidden="true" />
+                  <AlertCircle className="w-6 h-6 text-sakina-red flex-shrink-0 mt-1" aria-hidden="true" />
                   <div>
-                    <p className="font-semibold text-sakina-blue mb-2">Important</p>
+                    <p className="font-semibold text-sakina-green mb-2">Important</p>
                     <p className="text-gray-700 text-sm">
                       Tous les documents doivent être fournis en original et en photocopie.
                       Les documents en langue étrangère doivent être traduits et légalisés.
@@ -237,7 +237,7 @@ const Admissions = () => {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-sakina-blue mb-6">
+              <h3 className="text-2xl font-bold text-sakina-green mb-6">
                 Télécharger les Formulaires
               </h3>
               <div className="space-y-4">
@@ -245,7 +245,7 @@ const Admissions = () => {
                   <div key={doc.href} className="bg-gray-50 p-6 rounded-xl hover:bg-gray-100 transition-all duration-300">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-sakina-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-sakina-green rounded-xl flex items-center justify-center flex-shrink-0">
                           <FileText className="w-6 h-6 text-white" aria-hidden="true" />
                         </div>
                         <div>
@@ -256,7 +256,7 @@ const Admissions = () => {
                       <a
                         href={doc.href}
                         download={doc.filename}
-                        className="bg-sakina-gold text-sakina-blue px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 flex items-center justify-center space-x-2"
+                        className="bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center space-x-2"
                       >
                         <Download className="w-4 h-4" aria-hidden="true" />
                         <span>Télécharger<span className="sr-only"> : {doc.title} (PDF)</span></span>
@@ -266,19 +266,19 @@ const Admissions = () => {
                 ))}
               </div>
 
-              <div className="mt-8 bg-sakina-blue text-white p-6 rounded-xl">
+              <div className="mt-8 bg-sakina-green text-white p-6 rounded-xl">
                 <h4 className="text-xl font-semibold mb-4">Besoin d'aide ?</h4>
                 <div className="space-y-3">
-                  <a href={telHref(college.phones.main)} className="flex items-center space-x-3 hover:text-sakina-gold">
-                    <Phone className="w-5 h-5 text-sakina-gold" aria-hidden="true" />
+                  <a href={telHref(college.phones.main)} className="flex items-center space-x-3 hover:text-sakina-red-light">
+                    <Phone className="w-5 h-5 text-sakina-red-light" aria-hidden="true" />
                     <span>{college.phones.main}</span>
                   </a>
-                  <a href={`mailto:${college.emails.admissions}`} className="flex items-center space-x-3 hover:text-sakina-gold">
-                    <Mail className="w-5 h-5 text-sakina-gold" aria-hidden="true" />
+                  <a href={`mailto:${college.emails.admissions}`} className="flex items-center space-x-3 hover:text-sakina-red-light">
+                    <Mail className="w-5 h-5 text-sakina-red-light" aria-hidden="true" />
                     <span className="break-all">{college.emails.admissions}</span>
                   </a>
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-sakina-gold mt-1" aria-hidden="true" />
+                    <MapPin className="w-5 h-5 text-sakina-red-light mt-1" aria-hidden="true" />
                     <span>{college.address.street}<br />{college.address.district}, Dakar</span>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ const Admissions = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-sakina-blue mb-4">
+            <h2 className="text-4xl font-bold text-sakina-green mb-4">
               Frais de Scolarité
             </h2>
             <p className="text-xl text-gray-600">
@@ -304,7 +304,7 @@ const Admissions = () => {
             {/* Tableau (tablette et desktop) */}
             <table className="hidden md:table w-full bg-white rounded-2xl shadow-lg overflow-hidden">
               <caption className="sr-only">Frais de scolarité par niveau, en FCFA</caption>
-              <thead className="bg-sakina-blue text-white">
+              <thead className="bg-sakina-green text-white">
                 <tr>
                   <th scope="col" className="p-6 text-left">Niveau</th>
                   <th scope="col" className="p-6">Inscription</th>
@@ -315,10 +315,10 @@ const Admissions = () => {
               <tbody className="divide-y divide-gray-200">
                 {fees.map((fee) => (
                   <tr key={fee.level} className="hover:bg-gray-50 transition-colors duration-300">
-                    <th scope="row" className="p-6 text-left font-semibold text-sakina-blue">{fee.level}</th>
+                    <th scope="row" className="p-6 text-left font-semibold text-sakina-green">{fee.level}</th>
                     <td className="p-6 text-center">{fee.registration} FCFA</td>
                     <td className="p-6 text-center">{fee.monthly} FCFA</td>
-                    <td className="p-6 text-center font-semibold text-sakina-gold-dark">{fee.annual} FCFA</td>
+                    <td className="p-6 text-center font-semibold text-sakina-red">{fee.annual} FCFA</td>
                   </tr>
                 ))}
               </tbody>
@@ -328,7 +328,7 @@ const Admissions = () => {
             <div className="md:hidden space-y-4">
               {fees.map((fee) => (
                 <div key={fee.level} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                  <h3 className="bg-sakina-blue text-white px-6 py-3 font-semibold">{fee.level}</h3>
+                  <h3 className="bg-sakina-green text-white px-6 py-3 font-semibold">{fee.level}</h3>
                   <dl className="divide-y divide-gray-100 px-6">
                     {[
                       ['Inscription', fee.registration],
@@ -341,7 +341,7 @@ const Admissions = () => {
                     ))}
                     <div className="flex justify-between py-3 font-semibold">
                       <dt className="text-gray-600">Annuel</dt>
-                      <dd className="text-sakina-gold-dark">{fee.annual} FCFA</dd>
+                      <dd className="text-sakina-red">{fee.annual} FCFA</dd>
                     </div>
                   </dl>
                 </div>
@@ -350,7 +350,7 @@ const Admissions = () => {
 
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-blue mb-3">Facilités de paiement</h4>
+                <h4 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h4>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Paiement en 3 tranches possibles</li>
                   <li>• Réduction de 5% pour paiement annuel</li>
@@ -359,7 +359,7 @@ const Admissions = () => {
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-blue mb-3">Inclus dans les frais</h4>
+                <h4 className="font-semibold text-sakina-green mb-3">Inclus dans les frais</h4>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Manuels scolaires et fournitures</li>
                   <li>• Activités parascolaires</li>
