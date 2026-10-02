@@ -8,7 +8,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(rootDir, 'dist');
 const ssrDir = path.join(rootDir, 'dist-ssr');
 
-const { render, routes, getPageMeta, getSchoolJsonLd, parsePath, SITE_URL } = await import(
+const { render, routes, getPageMeta, getSchoolJsonLd, getArticleJsonLd, parsePath, SITE_URL } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 );
 
@@ -43,10 +43,11 @@ function buildHead(url, { indexable }) {
   if (!indexable) {
     tags.push(`<meta name="robots" content="noindex" />`);
   }
-  if (page === 'accueil') {
+  // Données structurées : l'établissement sur l'accueil, l'article sur les pages d'actualité
+  const jsonLd = page === 'accueil' ? getSchoolJsonLd() : page === 'actualites' && param ? getArticleJsonLd(param) : null;
+  if (jsonLd) {
     // "<" échappé pour qu'aucune donnée ne puisse fermer la balise <script>
-    const jsonLd = JSON.stringify(getSchoolJsonLd()).replace(/</g, '\\u003c');
-    tags.push(`<script type="application/ld+json">${jsonLd}</script>`);
+    tags.push(`<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>`);
   }
 
   return { title, description, tags };

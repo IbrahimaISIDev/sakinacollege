@@ -1,4 +1,5 @@
 import { college } from './college';
+import { articlePath, findArticle, isArchiveYear } from './news';
 
 // Adresse publique du site, sans "/" final (ex. https://www.sakinacollege.sn).
 // Sert aux URL canoniques, à Open Graph et au sitemap ; à définir via VITE_SITE_URL au moment du build.
@@ -39,10 +40,17 @@ const PAGE_META = {
 
 export function getPageMeta(page, param) {
   if (page === 'actualites' && param) {
-    return {
-      title: `Archives ${param} - Actualités${SUFFIX}`,
-      description: `Les actualités ${param} du Collège Privé Musulman Sakina.`
-    };
+    if (isArchiveYear(param)) {
+      return {
+        title: `Archives ${param} - Actualités${SUFFIX}`,
+        description: `Les actualités ${param} du Collège Privé Musulman Sakina.`
+      };
+    }
+    const article = findArticle(param);
+    if (article) {
+      return { title: `${article.title}${SUFFIX}`, description: article.excerpt };
+    }
+    return PAGE_META.introuvable;
   }
   return PAGE_META[page] || PAGE_META.introuvable;
 }
@@ -64,5 +72,21 @@ export function getSchoolJsonLd() {
     },
     openingHours: ['Mo-Fr 07:30-16:30', 'Sa 08:00-12:00'],
     sameAs: [college.social.facebook]
+  };
+}
+
+// Données structurées schema.org d'un article (pages /actualites/<article>)
+export function getArticleJsonLd(slug) {
+  const article = findArticle(slug);
+  if (!article) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.date,
+    author: { '@type': 'Organization', name: `${college.name} - ${article.author}` },
+    publisher: { '@type': 'School', name: college.name },
+    ...(SITE_URL && { mainEntityOfPage: `${SITE_URL}${articlePath(article)}` })
   };
 }
