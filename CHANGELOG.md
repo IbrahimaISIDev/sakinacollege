@@ -2,6 +2,14 @@
 
 ## [Non publié]
 
+### Contenus de l'établissement
+- Page « À propos » : sections « Le mot de la directrice » et « Notre équipe pédagogique » (photo ou initiales, nom, rôle).
+- Page « Inscriptions » : section « Documents utiles » avec la liste des fournitures de chaque classe et le règlement intérieur à télécharger ; lien direct depuis le pied de page.
+- Contenus regroupés dans `src/data/content.js` : tant qu'une rubrique n'est pas fournie par l'école, le site affiche « Bientôt disponible » (aucun contenu fictif publié).
+- Navigation : les liens vers une ancre (`/inscriptions#documents-utiles`) défilent jusqu'à la section, depuis une autre page comme depuis la même ; Précédent ramène à la position d'avant.
+- Dates : « 1er » pour le premier jour du mois (« 1er août 2024 »).
+
+
 ### Expérience utilisateur
 - Une page par actualité (`/actualites/<titre>`) avec fil d'Ariane, partage WhatsApp/Facebook, copie du lien et suggestions « À lire aussi » ; les cartes d'actualité sont entièrement cliquables. Pages pré-rendues avec données structurées `NewsArticle`.
 - Navigation : léger fondu entre les pages, position de lecture restaurée avec Précédent/Suivant et au rechargement, focus sur le titre et annonce de la page pour les lecteurs d'écran.

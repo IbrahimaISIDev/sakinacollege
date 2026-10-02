@@ -42,6 +42,7 @@ src/
   data/college.js           # coordonnées du collège et liens du menu (source unique)
   data/news.js              # actualités, archives, adresses des articles
   data/seo.js               # titre et description de chaque page, données schema.org
+  data/content.js           # contenus officiels : mot de la directrice, équipe, documents utiles
   components/
     Navbar.jsx  Footer.jsx  BackToTop.jsx
     PageHero.jsx            # bandeau titre des pages intérieures
@@ -50,6 +51,11 @@ src/
     ArticleCard.jsx         # carte d'actualité (lien vers la page de l'article)
     AnimatedNumber.jsx      # chiffre animé à l'apparition (chiffres clés de l'accueil)
     WhatsAppButton.jsx      # bouton WhatsApp flottant
+    DirectorMessage.jsx     # mot de la directrice (page À propos)
+    TeamSection.jsx         # équipe pédagogique (page À propos)
+    UsefulDocuments.jsx     # fournitures et règlement intérieur (page Inscriptions)
+    Avatar.jsx              # photo ou initiales d'une personne
+    ComingSoon.jsx          # encart « Bientôt disponible »
   hooks/useScrollReveal.js  # apparition douce des sections au défilement
   pages/
     Home.jsx  About.jsx  Programs.jsx  Admissions.jsx  News.jsx  Article.jsx  Contact.jsx  NotFound.jsx
@@ -93,6 +99,23 @@ Logo : `src/assets/images/logo-sakina.webp` (mot « Sakina » détouré), posé 
 Police : Poppins, hébergée avec le site via `@fontsource/poppins` (sous-ensemble latin, 5 variantes importées dans `src/main.jsx`) : aucune requête vers Google Fonts.
 
 ## Modifier le contenu
+
+### Contenus officiels à fournir par l'école
+
+Tout se trouve dans **`src/data/content.js`**. Tant qu'une rubrique est vide, le site affiche « Bientôt disponible » à sa place.
+
+| Rubrique | Où elle s'affiche | Ce qu'il faut renseigner |
+|---|---|---|
+| Mot de la directrice | À propos | `director` : nom, photo, paragraphes du message |
+| Équipe pédagogique | À propos | `team` : une ligne par personne (nom, rôle, photo) |
+| Listes de fournitures | Inscriptions › Documents utiles | `schoolYear` et le fichier PDF de chaque classe dans `supplyLists` |
+| Règlement intérieur | Inscriptions › Documents utiles | `schoolRules` : fichier PDF et date de la version |
+
+- **Photos** : fichiers carrés (environ 400×400 px, `.webp` ou `.jpg`) dans `public/images/equipe/`, indiqués sous la forme `'/images/equipe/nom.webp'`. Sans photo, les initiales s'affichent. Les photos d'élèves ou de personnels nécessitent leur autorisation.
+- **PDF** : fichiers dans `public/documents/`, indiqués sous la forme `'/documents/fournitures-6eme.pdf'`.
+- Lien direct vers les documents : `/inscriptions#documents-utiles` (aussi présent dans le pied de page).
+
+### Autres contenus
 
 - **Coordonnées** (téléphones, e-mails, adresse, réseaux) : uniquement dans `src/data/college.js`.
 - **Actualités** : `src/data/news.js`. Chaque article, et chaque année d'archive, obtient automatiquement sa page pré-rendue. L'adresse d'un article est tirée de son titre : **modifier le titre change l'adresse**, et les liens déjà partagés ne fonctionneront plus.
