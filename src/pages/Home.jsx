@@ -3,6 +3,7 @@ import heroImage from '../assets/images/hero-image.webp';
 import studentsImage from '../assets/images/students-classroom.webp';
 import islamicEducationImage from '../assets/images/islamic-education.webp';
 import CtaSection from '../components/CtaSection';
+import AnimatedNumber from '../components/AnimatedNumber';
 
 const Home = () => {
   const features = [
@@ -124,8 +125,8 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-sakina-green mb-2">
-                  {stat.number}
+                <div className="text-4xl md:text-5xl font-bold text-sakina-green mb-2 tabular-nums">
+                  <AnimatedNumber value={stat.number} />
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>

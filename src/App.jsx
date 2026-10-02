@@ -11,6 +11,7 @@ import News from './pages/News';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { useRoute, interceptLinkClicks } from './router';
+import { useScrollReveal } from './hooks/useScrollReveal';
 import { getPageMeta } from './data/seo';
 import './App.css';
 
@@ -33,6 +34,8 @@ function App({ url }) {
     document.addEventListener('click', interceptLinkClicks);
     return () => document.removeEventListener('click', interceptLinkClicks);
   }, []);
+
+  useScrollReveal([page, param]);
 
   const [announcement, setAnnouncement] = useState('');
   const isFirstRender = useRef(true);
