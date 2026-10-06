@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle, Calendar, Users, Facebook } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle, MessageCircle, Calendar, Users, Facebook } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import FormField from '../components/FormField';
+import { SendButtons, SendStatus } from '../components/SendChoice';
+import { buildMessage, deliver } from '../lib/delivery';
 import { college, allPhones, telHref } from '../data/college';
 
 const initialFormData = {
@@ -67,11 +69,18 @@ const faqItems = [
   }
 ];
 
+const REQUEST_TYPES = {
+  information: "Demande d'information",
+  inscription: 'Inscription',
+  visite: "Visite de l'établissement",
+  autre: 'Autre demande',
+};
+
 const linkClasses = 'text-gray-600 hover:text-sakina-green underline-offset-2 hover:underline transition-colors duration-300';
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialFormData);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sentChannel, setSentChannel] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,12 +90,21 @@ const Contact = () => {
     }));
   };
 
+  // Le formulaire est validé par le navigateur, puis le message est ouvert dans le canal choisi.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO : simulation, aucune donnée n'est transmise. Brancher un service d'envoi avant la mise en ligne.
-    setIsSubmitted(true);
-    setFormData(initialFormData);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    const channel = e.nativeEvent.submitter?.value === 'email' ? 'email' : 'whatsapp';
+    const body = buildMessage(`${REQUEST_TYPES[formData.requestType]} - Collège Sakina`, [
+      [['Sujet', formData.subject]],
+      [['Message', formData.message]],
+      [
+        ['Nom', formData.name],
+        ['E-mail', formData.email],
+        ['Téléphone', formData.phone],
+      ],
+    ]);
+    deliver(channel, { subject: formData.subject, body });
+    setSentChannel(channel);
   };
 
   const fieldProps = (id) => ({ id, value: formData[id], onChange: handleInputChange });
@@ -168,46 +186,33 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-6 md:p-8" role="status" aria-live="polite">
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" aria-hidden="true" />
-                  <h3 className="text-2xl font-bold text-green-700 mb-2">Message envoyé !</h3>
-                  <p className="text-gray-600">Nous vous répondrons dans les plus brefs délais.</p>
+            <div className="bg-gray-50 rounded-2xl p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <p className="text-sm text-gray-500">Les champs marqués d'un * sont obligatoires.</p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField {...fieldProps('name')} label="Nom complet" required placeholder="Votre nom complet" autoComplete="name" />
+                  <FormField {...fieldProps('email')} label="Email" type="email" required placeholder="votre@email.com" autoComplete="email" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <p className="text-sm text-gray-500">Les champs marqués d'un * sont obligatoires.</p>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <FormField {...fieldProps('name')} label="Nom complet" required placeholder="Votre nom complet" autoComplete="name" />
-                    <FormField {...fieldProps('email')} label="Email" type="email" required placeholder="votre@email.com" autoComplete="email" />
-                  </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField {...fieldProps('phone')} label="Téléphone" type="tel" placeholder="+221 XX XXX XX XX" autoComplete="tel" />
+                  <FormField {...fieldProps('requestType')} as="select" label="Type de demande">
+                    {Object.entries(REQUEST_TYPES).map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
+                  </FormField>
+                </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <FormField {...fieldProps('phone')} label="Téléphone" type="tel" placeholder="+221 XX XXX XX XX" autoComplete="tel" />
-                    <FormField {...fieldProps('requestType')} as="select" label="Type de demande">
-                      <option value="information">Demande d'information</option>
-                      <option value="inscription">Inscription</option>
-                      <option value="visite">Visite de l'établissement</option>
-                      <option value="autre">Autre</option>
-                    </FormField>
-                  </div>
+                <FormField {...fieldProps('subject')} label="Sujet" required placeholder="Sujet de votre message" />
+                <FormField {...fieldProps('message')} as="textarea" label="Message" required rows={6} placeholder="Décrivez votre demande en détail..." />
 
-                  <FormField {...fieldProps('subject')} label="Sujet" required placeholder="Sujet de votre message" />
-                  <FormField {...fieldProps('message')} as="textarea" label="Message" required rows={6} placeholder="Décrivez votre demande en détail..." />
+                <SendButtons />
 
-                  <div className="text-center">
-                    <button
-                      type="submit"
-                      className="bg-sakina-red text-white px-8 py-3 rounded-full font-semibold hover:bg-sakina-red-dark transition-colors duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto"
-                    >
-                      <Send size={20} aria-hidden="true" />
-                      <span>Envoyer le message</span>
-                    </button>
-                  </div>
-                </form>
-              )}
+                <div role="status" aria-live="polite">
+                  <SendStatus channel={sentChannel} />
+                </div>
+              </form>
             </div>
           </div>
         </div>

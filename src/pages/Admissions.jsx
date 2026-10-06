@@ -3,6 +3,8 @@ import { FileText, Download, CheckCircle, Phone, Mail, MapPin, AlertCircle } fro
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import FormField from '../components/FormField';
+import { SendButtons, SendStatus } from '../components/SendChoice';
+import { buildMessage, deliver, formatDateFr } from '../lib/delivery';
 import UsefulDocuments from '../components/UsefulDocuments';
 import { college, telHref } from '../data/college';
 
@@ -52,6 +54,8 @@ const steps = [
   }
 ];
 
+const LEVEL_LABELS = { '6eme': '6ème', '5eme': '5ème', '4eme': '4ème', '3eme': '3ème' };
+
 const fees = [
   { level: "6ème", registration: "50 000", monthly: "45 000", annual: "540 000" },
   { level: "5ème", registration: "50 000", monthly: "45 000", annual: "540 000" },
@@ -76,7 +80,7 @@ const downloads = [
 
 const Admissions = () => {
   const [formData, setFormData] = useState(initialFormData);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sentChannel, setSentChannel] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,12 +90,29 @@ const Admissions = () => {
     }));
   };
 
+  // Le formulaire est validé par le navigateur, puis la demande est ouverte dans le canal choisi.
+  // Les champs restent remplis : le parent peut revenir et choisir l'autre canal si besoin.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO : simulation, aucune donnée n'est transmise. Brancher un service d'envoi avant la mise en ligne.
-    setIsSubmitted(true);
-    setFormData(initialFormData);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    const channel = e.nativeEvent.submitter?.value === 'email' ? 'email' : 'whatsapp';
+    const body = buildMessage('Pré-inscription - Collège Sakina', [
+      [
+        ["Nom de l'élève", formData.studentName],
+        ['Date de naissance', formatDateFr(formData.birthDate)],
+        ['Lieu de naissance', formData.birthPlace],
+        ['Classe demandée', LEVEL_LABELS[formData.level]],
+        ['École précédente', formData.previousSchool],
+      ],
+      [
+        ['Parent / tuteur', formData.parentName],
+        ['Téléphone', formData.parentPhone],
+        ['E-mail', formData.parentEmail],
+        ['Adresse', formData.address],
+      ],
+      [['Message', formData.message]],
+    ]);
+    deliver(channel, { subject: `Pré-inscription : ${formData.studentName}`, body });
+    setSentChannel(channel);
   };
 
   const fieldProps = (id) => ({ id, value: formData[id], onChange: handleInputChange });
@@ -149,17 +170,6 @@ const Admissions = () => {
               </p>
             </div>
 
-            <div role="status" aria-live="polite">
-              {isSubmitted && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl mb-8 flex items-center">
-                  <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="font-semibold">Pré-inscription envoyée avec succès !</p>
-                    <p className="text-sm">Nous vous contacterons dans les 48h pour la suite du processus.</p>
-                  </div>
-                </div>
-              )}
-            </div>
 
             <form onSubmit={handleSubmit} className="bg-white p-6 md:p-8 rounded-2xl shadow-lg space-y-6">
               <p className="text-sm text-gray-500">Les champs marqués d'un * sont obligatoires.</p>
@@ -190,13 +200,10 @@ const Admissions = () => {
               <FormField {...fieldProps('previousSchool')} label="École précédente" placeholder="Nom de l'établissement précédent" />
               <FormField {...fieldProps('message')} as="textarea" label="Message (optionnel)" rows="4" placeholder="Informations complémentaires, questions particulières..." />
 
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="bg-sakina-green text-white px-8 py-4 rounded-full font-semibold hover:bg-sakina-green-light transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  Envoyer la pré-inscription
-                </button>
+              <SendButtons />
+
+              <div role="status" aria-live="polite">
+                <SendStatus channel={sentChannel} />
               </div>
             </form>
           </div>
