@@ -17,6 +17,7 @@ pnpm dev        # serveur de développement : http://localhost:8080
 pnpm lint       # ESLint
 pnpm build      # build de production + pré-rendu des pages dans dist/
 pnpm preview    # sert le build localement
+pnpm forms      # régénère les formulaires PDF de public/forms/ (nécessite Chrome)
 
 # Avec l'adresse publique du site (URL canoniques, Open Graph, sitemap.xml) :
 VITE_SITE_URL=https://www.exemple.sn pnpm build
@@ -28,12 +29,13 @@ VITE_SITE_URL=https://www.exemple.sn pnpm build
 index.html                  # gabarit HTML (meta, icônes)
 docs/brouillons/            # brouillons de textes à faire valider par l'école (non publiés)
 scripts/prerender.js        # pré-rendu : un HTML par page, 404.html, robots.txt, sitemap.xml
+scripts/generate-forms.mjs  # génération des formulaires PDF à partir de scripts/formulaires/*.html
 .github/workflows/ci.yml    # CI : lint + build à chaque push sur main et chaque PR
 public/
   .htaccess                 # hébergement Apache : page 404, en-têtes de sécurité, cache
   og-image.jpg              # image d'aperçu des liens partagés (1200×630)
   favicon.ico
-  forms/                    # PDF téléchargeables (inscription, fiche médicale)
+  forms/                    # PDF téléchargeables (inscription, fiche médicale), générés par `pnpm forms`
 src/
   main.jsx                  # démarrage côté navigateur (hydratation du HTML pré-rendu)
   entry-server.jsx          # rendu côté serveur, utilisé par le pré-rendu
@@ -125,12 +127,22 @@ Tout se trouve dans **`src/data/content.js`**. Tant qu'une rubrique est vide, le
 - **Carte** : `mapQuery` dans `src/data/college.js` (idéalement les coordonnées GPS exactes du collège).
 - **Textes, programmes, tarifs** : directement dans les fichiers de `src/pages/`.
 
+## Formulaires
+
+Les formulaires de pré-inscription et de contact n'ont pas de serveur : à l'envoi, le message est rédigé à partir des champs et ouvert dans **WhatsApp** (numéro principal) ou dans la **messagerie** du visiteur (`collegesakina@gmail.com`) ; il n'a plus qu'à appuyer sur « Envoyer ». Le site ne conserve aucune donnée. Logique dans `src/lib/delivery.js`.
+
+Pour un envoi direct sans passer par WhatsApp ni la messagerie, l'école peut créer un compte sur un service comme Web3Forms ou Formspree : seule la fonction `deliver` est à adapter.
+
+**Formulaires PDF** : leur contenu se modifie dans `scripts/formulaires/` (HTML + `style.css`), puis `pnpm forms` régénère les PDF (une page A4 chacun).
+
+## Impression
+
+Les pages s'impriment sans menu, boutons, formulaires ni carte, avec le logo et les coordonnées du collège en en-tête (`PrintHeader`). Les éléments à masquer portent la classe `print:hidden` ; les bandeaux de titre s'impriment en vert sur fond blanc (`print-on-white`).
+
 ## Limites connues (à traiter avant la mise en ligne)
 
-- **Les formulaires de pré-inscription et de contact n'envoient rien** : la soumission est simulée (voir les `TODO` dans `Admissions.jsx` et `Contact.jsx`). Il faut brancher un service d'envoi (Formspree, EmailJS, Web3Forms…) ou un backend.
 - **Le domaine `sakinacollege.sn` n'existe pas** : les adresses `@sakinacollege.sn` ne reçoivent aucun message.
 - Certaines images proviennent de banques d'images (dont une avec filigrane) et doivent être remplacées par de vraies photos.
-- Les PDF de `public/forms/` ont des accents corrompus et doivent être régénérés.
 - Le fichier du logo fourni est une image basse définition coupée à droite (« l'Excellence » tronqué) : seul le mot « Sakina » est utilisé. Demander à l'école le logo complet en SVG ou en PNG haute définition.
 - L'image de calligraphie (page Programmes) porte la mention « Adobe Stock » : à remplacer ou à licencier.
 - La carte pointe pour l'instant sur « Auchan HLM, Dakar » : à remplacer par les coordonnées exactes.
