@@ -34,7 +34,7 @@ const PAGE_META = {
   },
   introuvable: {
     title: `Page introuvable${SUFFIX}`,
-    description: "Cette page n'existe pas ou a été déplacée."
+    description: "Cette page n'existe pas ou a été déplacée. Retrouvez nos programmes, les inscriptions et les actualités du Collège Sakina."
   }
 };
 

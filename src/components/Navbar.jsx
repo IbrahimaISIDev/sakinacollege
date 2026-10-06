@@ -30,11 +30,11 @@ const Navbar = ({ currentPage }) => {
       {/* Barre de contact supérieure */}
       <div className="bg-sakina-green text-white py-2 px-4 text-sm hidden lg:block print:hidden">
         <div className="container mx-auto flex items-center space-x-6">
-          <a href={telHref(college.phones.main)} className="flex items-center space-x-2 hover:text-sakina-red-light">
+          <a href={telHref(college.phones.main)} className="flex items-center min-h-6 space-x-2 hover:text-sakina-red-light">
             <Phone size={16} aria-hidden="true" />
             <span>{college.phones.main}</span>
           </a>
-          <a href={`mailto:${college.emails.main}`} className="flex items-center space-x-2 hover:text-sakina-red-light">
+          <a href={`mailto:${college.emails.main}`} className="flex items-center min-h-6 space-x-2 hover:text-sakina-red-light">
             <Mail size={16} aria-hidden="true" />
             <span>{college.emails.main}</span>
           </a>
@@ -148,11 +148,11 @@ const Navbar = ({ currentPage }) => {
             </div>
             {/* Contact mobile */}
             <div className="pt-4 space-y-2 text-sm text-gray-600">
-              <a href={telHref(college.phones.main)} className="flex items-center space-x-2">
+              <a href={telHref(college.phones.main)} className="flex items-center min-h-6 space-x-2">
                 <Phone size={16} aria-hidden="true" />
                 <span>{college.phones.main}</span>
               </a>
-              <a href={`mailto:${college.emails.main}`} className="flex items-center space-x-2">
+              <a href={`mailto:${college.emails.main}`} className="flex items-center min-h-6 space-x-2">
                 <Mail size={16} aria-hidden="true" />
                 <span>{college.emails.main}</span>
               </a>

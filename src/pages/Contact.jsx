@@ -239,13 +239,13 @@ const Contact = () => {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
                     <Mail size={16} className="text-sakina-red flex-shrink-0" aria-hidden="true" />
-                    <a href={`mailto:${dept.email}`} className={`text-sm break-all ${linkClasses}`}>
+                    <a href={`mailto:${dept.email}`} className={`inline-flex items-center min-h-6 text-sm break-all ${linkClasses}`}>
                       {dept.email}
                     </a>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone size={16} className="text-sakina-red flex-shrink-0" aria-hidden="true" />
-                    <a href={telHref(dept.phone)} className={`text-sm ${linkClasses}`}>
+                    <a href={telHref(dept.phone)} className={`inline-flex items-center min-h-6 text-sm ${linkClasses}`}>
                       {dept.phone}
                     </a>
                   </div>

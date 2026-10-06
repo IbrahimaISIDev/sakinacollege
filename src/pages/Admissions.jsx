@@ -358,7 +358,7 @@ const Admissions = () => {
 
             <div className="mt-8 grid md:grid-cols-2 print:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h4>
+                <h3 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Paiement en 3 tranches possibles</li>
                   <li>• Réduction de 5% pour paiement annuel</li>
@@ -367,7 +367,7 @@ const Admissions = () => {
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-green mb-3">Inclus dans les frais</h4>
+                <h3 className="font-semibold text-sakina-green mb-3">Inclus dans les frais</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Manuels scolaires et fournitures</li>
                   <li>• Activités parascolaires</li>
