@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.js",
+    "forms": "node scripts/generate-forms.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
