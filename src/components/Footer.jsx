@@ -18,7 +18,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-sakina-green text-white">
+    <footer className="bg-sakina-green text-white print:hidden">
       {/* Section principale du footer */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -104,7 +104,7 @@ const Footer = () => {
                 <Phone size={16} className="text-sakina-red-light mt-1 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm flex flex-col">
                   {[college.phones.main, college.phones.secondary].map((phone) => (
-                    <a key={phone} href={telHref(phone)} className="text-gray-300 hover:text-sakina-red-light">
+                    <a key={phone} href={telHref(phone)} className="inline-flex items-center min-h-6 text-gray-300 hover:text-sakina-red-light">
                       {phone}
                     </a>
                   ))}
@@ -114,7 +114,7 @@ const Footer = () => {
                 <Mail size={16} className="text-sakina-red-light mt-1 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm flex flex-col">
                   {[college.emails.main, college.emails.contact].map((email) => (
-                    <a key={email} href={`mailto:${email}`} className="text-gray-300 hover:text-sakina-red-light break-all">
+                    <a key={email} href={`mailto:${email}`} className="inline-flex items-center min-h-6 text-gray-300 hover:text-sakina-red-light break-all">
                       {email}
                     </a>
                   ))}

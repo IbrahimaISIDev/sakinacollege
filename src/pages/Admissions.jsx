@@ -3,6 +3,8 @@ import { FileText, Download, CheckCircle, Phone, Mail, MapPin, AlertCircle } fro
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import FormField from '../components/FormField';
+import { SendButtons, SendStatus } from '../components/SendChoice';
+import { buildMessage, deliver, formatDateFr } from '../lib/delivery';
 import UsefulDocuments from '../components/UsefulDocuments';
 import { college, telHref } from '../data/college';
 
@@ -52,6 +54,8 @@ const steps = [
   }
 ];
 
+const LEVEL_LABELS = { '6eme': '6ème', '5eme': '5ème', '4eme': '4ème', '3eme': '3ème' };
+
 const fees = [
   { level: "6ème", registration: "50 000", monthly: "45 000", annual: "540 000" },
   { level: "5ème", registration: "50 000", monthly: "45 000", annual: "540 000" },
@@ -76,7 +80,7 @@ const downloads = [
 
 const Admissions = () => {
   const [formData, setFormData] = useState(initialFormData);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sentChannel, setSentChannel] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,12 +90,29 @@ const Admissions = () => {
     }));
   };
 
+  // Le formulaire est validé par le navigateur, puis la demande est ouverte dans le canal choisi.
+  // Les champs restent remplis : le parent peut revenir et choisir l'autre canal si besoin.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO : simulation, aucune donnée n'est transmise. Brancher un service d'envoi avant la mise en ligne.
-    setIsSubmitted(true);
-    setFormData(initialFormData);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    const channel = e.nativeEvent.submitter?.value === 'email' ? 'email' : 'whatsapp';
+    const body = buildMessage('Pré-inscription - Collège Sakina', [
+      [
+        ["Nom de l'élève", formData.studentName],
+        ['Date de naissance', formatDateFr(formData.birthDate)],
+        ['Lieu de naissance', formData.birthPlace],
+        ['Classe demandée', LEVEL_LABELS[formData.level]],
+        ['École précédente', formData.previousSchool],
+      ],
+      [
+        ['Parent / tuteur', formData.parentName],
+        ['Téléphone', formData.parentPhone],
+        ['E-mail', formData.parentEmail],
+        ['Adresse', formData.address],
+      ],
+      [['Message', formData.message]],
+    ]);
+    deliver(channel, { subject: `Pré-inscription : ${formData.studentName}`, body });
+    setSentChannel(channel);
   };
 
   const fieldProps = (id) => ({ id, value: formData[id], onChange: handleInputChange });
@@ -115,7 +136,7 @@ const Admissions = () => {
             </p>
           </div>
 
-          <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ol className="grid md:grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-8 print:gap-4">
             {steps.map((step) => (
               <li
                 key={step.number}
@@ -137,7 +158,7 @@ const Admissions = () => {
       </section>
 
       {/* Section Formulaire de pré-inscription */}
-      <section className="py-20 bg-gray-50">
+      <section className="print:hidden py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -149,17 +170,6 @@ const Admissions = () => {
               </p>
             </div>
 
-            <div role="status" aria-live="polite">
-              {isSubmitted && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl mb-8 flex items-center">
-                  <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="font-semibold">Pré-inscription envoyée avec succès !</p>
-                    <p className="text-sm">Nous vous contacterons dans les 48h pour la suite du processus.</p>
-                  </div>
-                </div>
-              )}
-            </div>
 
             <form onSubmit={handleSubmit} className="bg-white p-6 md:p-8 rounded-2xl shadow-lg space-y-6">
               <p className="text-sm text-gray-500">Les champs marqués d'un * sont obligatoires.</p>
@@ -190,13 +200,10 @@ const Admissions = () => {
               <FormField {...fieldProps('previousSchool')} label="École précédente" placeholder="Nom de l'établissement précédent" />
               <FormField {...fieldProps('message')} as="textarea" label="Message (optionnel)" rows="4" placeholder="Informations complémentaires, questions particulières..." />
 
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="bg-sakina-green text-white px-8 py-4 rounded-full font-semibold hover:bg-sakina-green-light transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  Envoyer la pré-inscription
-                </button>
+              <SendButtons />
+
+              <div role="status" aria-live="polite">
+                <SendStatus channel={sentChannel} />
               </div>
             </form>
           </div>
@@ -206,7 +213,7 @@ const Admissions = () => {
       {/* Section Documents requis */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 print:grid-cols-2 gap-12 print:gap-8">
             <div>
               <h2 className="text-4xl font-bold text-sakina-green mb-8">
                 Documents Requis
@@ -257,7 +264,7 @@ const Admissions = () => {
                       <a
                         href={doc.href}
                         download={doc.filename}
-                        className="bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center space-x-2"
+                        className="print:hidden bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center space-x-2"
                       >
                         <Download className="w-4 h-4" aria-hidden="true" />
                         <span>Télécharger<span className="sr-only"> : {doc.title} (PDF)</span></span>
@@ -303,7 +310,7 @@ const Admissions = () => {
 
           <div className="max-w-4xl mx-auto">
             {/* Tableau (tablette et desktop) */}
-            <table className="hidden md:table w-full bg-white rounded-2xl shadow-lg overflow-hidden">
+            <table className="hidden md:table print:table w-full bg-white rounded-2xl shadow-lg overflow-hidden">
               <caption className="sr-only">Frais de scolarité par niveau, en FCFA</caption>
               <thead className="bg-sakina-green text-white">
                 <tr>
@@ -326,7 +333,7 @@ const Admissions = () => {
             </table>
 
             {/* Cartes (mobile) */}
-            <div className="md:hidden space-y-4">
+            <div className="md:hidden print:hidden space-y-4">
               {fees.map((fee) => (
                 <div key={fee.level} className="bg-white rounded-2xl shadow-lg overflow-hidden">
                   <h3 className="bg-sakina-green text-white px-6 py-3 font-semibold">{fee.level}</h3>
@@ -349,9 +356,9 @@ const Admissions = () => {
               ))}
             </div>
 
-            <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="mt-8 grid md:grid-cols-2 print:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h4>
+                <h3 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Paiement en 3 tranches possibles</li>
                   <li>• Réduction de 5% pour paiement annuel</li>
@@ -360,7 +367,7 @@ const Admissions = () => {
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg">
-                <h4 className="font-semibold text-sakina-green mb-3">Inclus dans les frais</h4>
+                <h3 className="font-semibold text-sakina-green mb-3">Inclus dans les frais</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li>• Manuels scolaires et fournitures</li>
                   <li>• Activités parascolaires</li>

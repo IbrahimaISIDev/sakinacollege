@@ -2,6 +2,14 @@
 
 ## [Non publié]
 
+### Crédibilité et finitions
+- Formulaires de pré-inscription et de contact réellement transmis : le message est rédigé à partir des champs et ouvert dans WhatsApp ou dans la messagerie (collegesakina@gmail.com). Fin du faux message « envoyé avec succès » ; les champs restent remplis.
+- Formulaire d'inscription et fiche médicale régénérés : accents corrects, logo et couleurs de la charte, cases à cocher, une page A4 chacun. Sources HTML et commande `pnpm forms` pour les modifier.
+- FAQ de la page Contact en accordéon (natif, accessible au clavier, fonctionnel sans JavaScript).
+- Impression soignée : sans menu ni boutons, avec en-tête aux coordonnées du collège ; page Inscriptions imprimée en 3 pages au lieu de 5.
+- Audit d'accessibilité et de SEO sur toutes les pages : liens de contact portés à 24 px de haut minimum (WCAG 2.2), hiérarchie des titres corrigée (Inscriptions, archives), description de la page 404 complétée. Aucun problème de contraste détecté.
+
+
 ### Contenus de l'établissement
 - Page « À propos » : section « Groupe scolaire Sakina » reprenant la présentation officielle (page Facebook de l'école) et ses deux établissements, le Collège Sakina (6ème à 3ème) et Boushra School (maternelle, CI, CP) ; appartenance au groupe ajoutée aux données structurées.
 - Mot de la directrice publié (texte validé le 2026-10-02). En attendant son nom, la signature indique « Directrice du Collège Sakina » et le logo remplace la photo. Brouillon d'origine, avec une version courte, dans `docs/brouillons/`.

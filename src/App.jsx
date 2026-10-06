@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import WhatsAppButton from './components/WhatsAppButton';
+import PrintHeader from './components/PrintHeader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
@@ -72,6 +73,7 @@ function App({ url }) {
         Aller au contenu
       </a>
       <Navbar currentPage={page} />
+      <PrintHeader />
       <main id="contenu" tabIndex={-1} className="flex-1 focus:outline-none">
         <Page param={param} />
       </main>

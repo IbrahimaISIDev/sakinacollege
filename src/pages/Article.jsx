@@ -37,7 +37,7 @@ const Article = ({ article }) => {
 
   return (
     <article className="bg-white">
-      <header className="bg-gradient-to-br from-sakina-green to-sakina-green-light text-white py-12 md:py-16">
+      <header className="bg-gradient-to-br from-sakina-green to-sakina-green-light text-white py-12 md:py-16 print-on-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <nav aria-label="Fil d'Ariane" className="mb-6 text-sm text-green-100">
             <ol className="flex flex-wrap items-center gap-1">
@@ -77,7 +77,7 @@ const Article = ({ article }) => {
         <p className="text-lg text-gray-700 leading-relaxed">{article.content}</p>
 
         {/* Partage */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-gray-200 print:hidden">
           <h2 className="text-lg font-semibold text-sakina-green mb-4">Partager cet article</h2>
           <div className="flex flex-wrap gap-3">
             <a
@@ -112,13 +112,13 @@ const Article = ({ article }) => {
           </div>
         </div>
 
-        <a href="/actualites" className="inline-block mt-10 text-sakina-green font-semibold hover:text-sakina-red">
+        <a href="/actualites" className="inline-block mt-10 text-sakina-green font-semibold hover:text-sakina-red print:hidden">
           ← Toutes les actualités
         </a>
       </div>
 
       {/* Autres actualités */}
-      <section className="bg-gray-50 py-16" aria-labelledby="autres-actualites">
+      <section className="bg-gray-50 py-16 print:hidden" aria-labelledby="autres-actualites">
         <div className="container mx-auto px-4">
           <h2 id="autres-actualites" className="text-2xl md:text-3xl font-bold text-sakina-green mb-10 text-center">
             À lire aussi
