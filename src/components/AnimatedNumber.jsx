@@ -41,8 +41,8 @@ const AnimatedNumber = ({ value }) => {
   if (!digits) return value;
   return (
     <span ref={ref}>
-      <span aria-hidden="true">{`${prefix}${current}${suffix}`}</span>
-      <span className="sr-only">{value}</span>
+      <span aria-hidden="true" className="print:hidden">{`${prefix}${current}${suffix}`}</span>
+      <span className="sr-only print:not-sr-only">{value}</span>
     </span>
   );
 };

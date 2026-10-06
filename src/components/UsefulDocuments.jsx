@@ -18,7 +18,7 @@ const DocumentRow = ({ title, detail, file }) => (
       <a
         href={file}
         download
-        className="inline-flex items-center justify-center gap-2 bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300"
+        className="print:hidden inline-flex items-center justify-center gap-2 bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300"
       >
         <Download className="w-4 h-4" aria-hidden="true" />
         <span>Télécharger<span className="sr-only"> : {title} (PDF)</span></span>
@@ -42,7 +42,7 @@ const UsefulDocuments = () => (
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
+      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 print:grid-cols-2 gap-10">
         <div>
           <h3 className="text-2xl font-bold text-sakina-green mb-6">
             Listes de fournitures{schoolYear && <span className="font-medium text-gray-600"> {schoolYear}</span>}

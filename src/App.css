@@ -64,3 +64,38 @@
 .faq summary::-webkit-details-marker {
   display: none;
 }
+
+/* Impression : couleurs conservées (textes blancs sur fond vert lisibles), bandeaux de titre en
+   texte vert sur fond blanc pour économiser l'encre, espacements resserrés, pas d'ombres */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none !important;
+  }
+  html {
+    font-size: 12px;
+  }
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .print-on-white,
+  .print-on-white * {
+    background: none !important;
+    color: var(--color-sakina-green) !important;
+  }
+  .print-on-white {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  table,
+  li,
+  figure,
+  img {
+    break-inside: avoid;
+  }
+}

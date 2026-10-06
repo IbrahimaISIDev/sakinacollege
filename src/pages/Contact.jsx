@@ -174,7 +174,7 @@ const Contact = () => {
       </section>
 
       {/* Formulaire de Contact */}
-      <section className="py-20 bg-white">
+      <section className="print:hidden py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -373,7 +373,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-200 h-80 lg:h-auto lg:min-h-[24rem]">
+              <div className="bg-gray-200 h-80 lg:h-auto lg:min-h-[24rem] print:hidden">
                 <iframe
                   title={`Plan d'accès : ${college.name}`}
                   src={`https://www.google.com/maps?q=${encodeURIComponent(college.mapQuery)}&hl=fr&z=16&output=embed`}

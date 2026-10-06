@@ -5,7 +5,7 @@ const SECONDARY_CLASSES =
 
 // primary / secondary : { label, href, icon?, iconAfter? }
 const CtaSection = ({ title, text, primary, secondary }) => (
-  <section className="py-20 bg-sakina-green text-white">
+  <section className="py-20 bg-sakina-green text-white print:hidden">
     <div className="container mx-auto px-4 text-center">
       <h2 className="text-4xl font-bold mb-6">{title}</h2>
       <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">{text}</p>

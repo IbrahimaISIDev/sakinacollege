@@ -1,5 +1,5 @@
 const PageHero = ({ title, subtitle, children }) => (
-  <section className="relative bg-gradient-to-br from-sakina-green to-sakina-green-light py-20">
+  <section className="relative bg-gradient-to-br from-sakina-green to-sakina-green-light py-20 print-on-white">
     <div className="container mx-auto px-4">
       <div className="text-center text-white space-y-6">
         {children}

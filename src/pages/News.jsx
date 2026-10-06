@@ -82,7 +82,7 @@ const News = ({ param }) => {
       />
 
       {/* Section Filtres et Recherche */}
-      <section className="py-12 bg-white border-b">
+      <section className="print:hidden py-12 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Recherche */}
@@ -161,7 +161,7 @@ const News = ({ param }) => {
       </section>
 
       {/* Section Restez informé (pas de newsletter tant qu'aucun service d'envoi n'est branché) */}
-      <section className="py-20 bg-sakina-green text-white">
+      <section className="print:hidden py-20 bg-sakina-green text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">

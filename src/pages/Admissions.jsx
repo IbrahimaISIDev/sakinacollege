@@ -136,7 +136,7 @@ const Admissions = () => {
             </p>
           </div>
 
-          <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ol className="grid md:grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-8 print:gap-4">
             {steps.map((step) => (
               <li
                 key={step.number}
@@ -158,7 +158,7 @@ const Admissions = () => {
       </section>
 
       {/* Section Formulaire de pré-inscription */}
-      <section className="py-20 bg-gray-50">
+      <section className="print:hidden py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -213,7 +213,7 @@ const Admissions = () => {
       {/* Section Documents requis */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 print:grid-cols-2 gap-12 print:gap-8">
             <div>
               <h2 className="text-4xl font-bold text-sakina-green mb-8">
                 Documents Requis
@@ -264,7 +264,7 @@ const Admissions = () => {
                       <a
                         href={doc.href}
                         download={doc.filename}
-                        className="bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center space-x-2"
+                        className="print:hidden bg-sakina-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-sakina-red-dark transition-colors duration-300 flex items-center justify-center space-x-2"
                       >
                         <Download className="w-4 h-4" aria-hidden="true" />
                         <span>Télécharger<span className="sr-only"> : {doc.title} (PDF)</span></span>
@@ -310,7 +310,7 @@ const Admissions = () => {
 
           <div className="max-w-4xl mx-auto">
             {/* Tableau (tablette et desktop) */}
-            <table className="hidden md:table w-full bg-white rounded-2xl shadow-lg overflow-hidden">
+            <table className="hidden md:table print:table w-full bg-white rounded-2xl shadow-lg overflow-hidden">
               <caption className="sr-only">Frais de scolarité par niveau, en FCFA</caption>
               <thead className="bg-sakina-green text-white">
                 <tr>
@@ -333,7 +333,7 @@ const Admissions = () => {
             </table>
 
             {/* Cartes (mobile) */}
-            <div className="md:hidden space-y-4">
+            <div className="md:hidden print:hidden space-y-4">
               {fees.map((fee) => (
                 <div key={fee.level} className="bg-white rounded-2xl shadow-lg overflow-hidden">
                   <h3 className="bg-sakina-green text-white px-6 py-3 font-semibold">{fee.level}</h3>
@@ -356,7 +356,7 @@ const Admissions = () => {
               ))}
             </div>
 
-            <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="mt-8 grid md:grid-cols-2 print:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-lg">
                 <h4 className="font-semibold text-sakina-green mb-3">Facilités de paiement</h4>
                 <ul className="space-y-2 text-gray-600">
