@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, CheckCircle, MessageCircle, Calendar, Users, Facebook } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle, ChevronDown, MessageCircle, Calendar, Users, Facebook } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import FormField from '../components/FormField';
 import { SendButtons, SendStatus } from '../components/SendChoice';
@@ -315,16 +315,16 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-6">
+          {/* Accordéon natif (<details>) : accessible au clavier et fonctionnel sans JavaScript */}
+          <div className="max-w-3xl mx-auto space-y-4">
             {faqItems.map((item) => (
-              <div key={item.question} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-sakina-green mb-3">
-                  {item.question}
-                </h3>
-                <p className="text-gray-600">
-                  {item.answer}
-                </p>
-              </div>
+              <details key={item.question} className="faq group bg-gray-50 rounded-xl open:shadow-md transition-shadow duration-300">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 text-lg font-semibold text-sakina-green rounded-xl hover:bg-gray-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-sakina-green">
+                  <h3>{item.question}</h3>
+                  <ChevronDown className="w-5 h-5 flex-shrink-0 text-sakina-red transition-transform duration-300 group-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <p className="px-6 pb-6 text-gray-600 leading-relaxed">{item.answer}</p>
+              </details>
             ))}
           </div>
         </div>

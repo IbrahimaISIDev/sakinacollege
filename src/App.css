@@ -59,3 +59,8 @@
     transform: none;
   }
 }
+
+/* Accordéon de la FAQ : masque le triangle natif de <summary> (remplacé par une icône) */
+.faq summary::-webkit-details-marker {
+  display: none;
+}
